@@ -1,0 +1,14 @@
+/*
+ * Reset default browsers's styles such as margins/padding in ul/ol/blockquote elements   
+ */
+ul%_reset,
+ol%_reset {
+    padding-left: 0;
+    list-style-type: none;
+}
+blockquote%_reset {
+    margin: {
+        left: 0;
+        right: 0;
+    }
+}

@@ -1,0 +1,56 @@
+/**
+ * Provides paddings to a container.
+ */
+
+.l-pad {
+    @extend .l-pad--top, .l-pad--inner;
+}
+.l-pad--half {
+    @extend .l-pad--top--half, .l-pad--inner--half;
+}
+.l-pad--double {
+    @extend .l-pad--top--double, .l-pad--inner--double;
+}
+.l-pad--triple {
+    @extend .l-pad--top--triple, .l-pad--inner--triple;
+}
+
+// adds padding to the top
+.l-pad--top {
+    padding-top: $base-margin * 1px;
+}
+.l-pad--top--half {
+    padding-top: .5 * $base-margin * 2px;
+}
+.l-pad--top--double {
+    padding-top: $base-margin * 2px;
+}
+.l-pad--top--triple {
+    padding-top: $base-margin * 3px;
+}
+
+// adds padding to the sides
+.l-pad--inner {
+    padding: {
+        left: $base-margin * 1px;
+        right: $base-margin * 1px;
+    }
+}
+.l-pad--inner--half {
+    padding: {
+        left: .5 * $base-margin * 2px;
+        right: .5 * $base-margin * 2px;
+    }
+}
+.l-pad--inner--double {
+    padding: {
+        left: $base-margin * 2px;
+        right: $base-margin * 2px;
+    }
+}
+.l-pad--inner--triple {
+    padding: {
+        left: $base-margin * 3px;
+        right: $base-margin * 3px;
+    }
+}

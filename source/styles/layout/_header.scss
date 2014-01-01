@@ -1,0 +1,121 @@
+$l-header-logo-height: 60;
+
+.l-header {
+    top: 0;
+    width: 100%;
+    display: table;
+    z-index: 10200;
+    position: fixed;
+    
+    &:after,
+    &:before,
+    + *:before {
+        content: "";
+    }
+    > *,
+    &:after,
+    &:before {
+        display: table-cell;
+        vertical-align: top;
+    }
+    > * {
+        width: 6 * $slot-max-width + 5 * $base-margin * 1px;
+    }
+    + *:before {
+        display: block;
+        margin-bottom: $base-margin * 1px;
+        background-color: $l-header-fgcolor;
+        height: 2 * $base-margin + $l-header-logo-height * 1px;
+    }
+}
+
+.l-header-main,
+.l-header-bottom {
+    position: relative;
+}
+.l-header-main {
+    z-index: 10100;
+}
+.l-header-bottom {
+    z-index: 10000;
+    padding-top: $base-margin * 2px;
+    margin-top: (3 * $base-margin + $l-header-logo-height) * -1px;
+    
+    &:before {
+        content: "";
+        display: block;
+        height: 2 * $base-margin + $l-header-logo-height * 1px;
+    }
+}
+
+.l-header-logo {
+    float: left;
+    display: inline-block;
+    border: $base-margin * 1px solid $l-header-bgcolor;
+    font-size: $l-header-logo-height / 2 * 1px;
+}
+.l-header:after,
+.l-header:before,
+.l-header-button,
+.l-header-navigation {
+    background-color: $l-header-bgcolor;
+}
+.l-header-button {
+    text-align: right;
+    padding: $base-margin * 1px;
+    height: $l-header-logo-height * 1px;
+    margin-left: 2 * $base-margin + $l-header-logo-height / 2 * 1px;
+    
+    &:before {
+        content: "";
+        height: 100%;
+        display: inline-block;
+    }
+    *,
+    &:before {
+        vertical-align: middle;
+    }
+}
+
+
+@include media('m-up') {
+    .l-header {
+        &:after,
+        &:before {
+            padding: 0 .5 * $base-margin * 1px;
+        }
+    }
+    .l-header-bar {
+        display: table;
+    }
+    .l-header-logo,
+    .l-header-navigation {
+        display: table-cell;
+        vertical-align: top;
+    }
+    .l-header-navigation {
+        width: 100%;
+        text-align: right;
+        vertical-align: bottom;
+        padding-right: $base-margin * 1px;
+    }
+}
+
+@include media('height-m-to') {
+    $l-header-logo-height: 40;
+    
+    .l-header-logo {
+        font-size: $l-header-logo-height / 2 * 1px;
+    }
+    .l-header-button {
+        height: $l-header-logo-height * 1px;
+        margin-left: (2 * $base-margin) + ($l-header-logo-height / 2) * 1px;
+    }
+    .l-header + *:before,
+    .l-header-bottom:before {
+        height: 2 * $base-margin + $l-header-logo-height * 1px;
+    }
+    .l-header-bottom {
+        margin-top: (3 * $base-margin + $l-header-logo-height) * -1px;
+    }
+}

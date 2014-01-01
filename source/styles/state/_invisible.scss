@@ -1,0 +1,5 @@
+@include media-generate('.is-invisible') {
+    position: fixed !important;
+    top: -100% !important;
+    left: -100% !important;
+}

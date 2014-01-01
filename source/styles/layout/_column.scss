@@ -1,0 +1,6 @@
+.l-column {
+    @include column-gap($base-margin * 1px);
+}
+@include media-generate('.l-column--2') {
+    @include column-count(2);
+}

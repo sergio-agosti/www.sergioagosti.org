@@ -1,0 +1,55 @@
+@mixin _is-page-wide {
+    @media (min-width: em(900)) {
+        @content;
+    }
+}
+
+@mixin page {
+    @include _is-page-wide {
+        @include display(flex);
+        @include flex-wrap(wrap);
+        @include justify-content(center);
+    
+        > * {
+            @include flex(1 100%);
+        }
+    
+        @supports not (flex-wrap: wrap) { // [1]
+            @include display(block);
+        }
+    }
+}
+@mixin page__content {
+    @include padding(left right);
+    @include box-sizing(border-box);
+    
+    margin: { left: auto; right: auto; }
+    max-width: $page-maxwidth / 100 * 60;
+    
+    @include _is-page-wide {
+        max-width: $page-maxwidth;
+    }
+    
+    @supports not (flex-wrap: wrap) { // [1]
+        max-width: $page-maxwidth / 100 * 60;
+    }
+}
+@mixin page__content--column($content: null) {
+    @include _is-page-wide {
+        margin: { left: 0; right: 0; }
+        
+        @if $content == "main" {
+            @include flex(1 60%);
+            max-width: $page-maxwidth / 100 * 60;
+        }
+        @if $content == "aside" {
+            @include flex(1 40%);
+            max-width: $page-maxwidth / 100 * 40;
+        }
+        
+        @supports not (flex-wrap: wrap) { // [1]
+            margin: { left: auto; right: auto; }
+            max-width: $page-maxwidth / 100 * 60;
+        }
+    }
+}

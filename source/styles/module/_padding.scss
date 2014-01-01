@@ -1,0 +1,10 @@
+@mixin padding($position: null) {
+    @if $position == null {
+        padding: $base-margin;
+    }
+    @else {
+        @each $pos in $position {
+            padding-#{$pos}: $base-margin;
+        }
+    }
+}

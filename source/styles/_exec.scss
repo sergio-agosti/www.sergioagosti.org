@@ -1,0 +1,58 @@
+img.fluidmedia {
+    @extend %fluidmedia;
+}
+
+
+
+a[href="#navigation"] {
+    @include menubutton($menu-color, nth($header-color, 1), nth($header-color, 2));
+    vertical-align: bottom;
+}
+
+
+
+[role="banner"] {
+    @include header;
+    > p {
+        @include header__menu;
+    }
+    > h1 {
+        @include header__title;
+    }
+}
+
+[role="contentinfo"] {
+    @include footer;
+}
+
+[role="navigation"] {
+    @include navigation;
+    > ul {
+        @include navigation__list;
+    }
+}
+
+[role="navigation"],
+[role="complementary"] {
+    > ul {
+        @extend %_reset;
+    }
+}
+
+
+
+body {
+    @include page;
+}
+[role="main"],
+[role="banner"] > *,
+[role="navigation"],
+[role="complementary"] {
+    @include page__content;
+}
+[role="main"] {
+    @include page__content--column(main);
+}
+[role="complementary"] {
+    @include page__content--column(aside);
+}

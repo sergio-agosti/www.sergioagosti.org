@@ -1,0 +1,10 @@
+@mixin margin($position: null) {
+    @if $position == null {
+        margin: $base-margin;
+    }
+    @else {
+        @each $pos in $position {
+            margin-#{$pos}: $base-margin;
+        }
+    }
+}

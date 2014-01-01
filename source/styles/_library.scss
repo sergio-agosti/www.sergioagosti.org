@@ -1,0 +1,195 @@
+// strips any units from a number with unit
+@function scalar($number) {
+    @return $number / ($number * 0 + 1);
+}
+// returns
+@function tfmw-color($tag, $on-dark: false, $is-big: false) {
+    $index: 1;
+
+    @if ($on-dark) {
+        $index: $index + 2;
+    }
+    @if ($is-big) {
+        $index: $index + 1;
+    }
+
+    @each $color in $color-tfmw {
+        @if (nth($color, 1) == $tag) {
+            @return nth(nth($color, 2), $index);
+        }
+    }
+
+    @return false;
+}
+
+// re-defines bourboun hide-text mixin to enforce rules sometimes overwritten
+@mixin hide-text {
+    color: transparent !important;
+    font: 0/0 a !important;
+    text-shadow: none !important;
+}
+
+/**
+ * media: wraps some rules into a media query
+ *
+ * e.g.
+ *
+ * SASS source
+
+.module {
+    color: red;
+    @include media(m) {
+        color: blue;
+    }
+    @include media(l) {
+        color: green;
+    }
+}
+
+ * CSS generated
+
+.module {
+    color: red;
+}
+@media only screen and (min-width: 501px) {
+    .module {
+        color: blue;
+    }
+}
+@media only screen and (min-width: 851px) {
+    .module {
+        color: green;
+    }
+}
+
+ */
+@mixin media($media-size) {
+    $media-breakpoints: (
+        's'    'only screen and (max-width: 714px)',
+
+        'm-up' 'only screen and (min-width: 715px)',
+        'm-to' 'only screen and (max-width: 970px)',
+        'm'    'only screen and (min-width: 715px) and (max-width: 970px)',
+
+        'l-up' 'only screen and (min-width: 971px)',
+        'l-to' 'only screen and (max-width: 1288px)',
+        'l'    'only screen and (min-width: 971px) and (max-width: 1288px)',
+
+        'x-up' 'only screen and (min-width: 1289px)',
+        'x-to' 'only screen and (max-width: 1606px)',
+        'x'    'only screen and (min-width: 1289px) and (max-width: 1606px)',
+
+        'h'    'only screen and (min-width: 1607px)'
+
+    ) !default;
+    @each $media-breakpoint in $media-breakpoints {
+        @if nth($media-breakpoint, 1) == $media-size {
+            @media #{nth($media-breakpoint, 2)} {
+                @content;
+            }
+        }
+    }
+}
+/**
+ * Generates classes for all the defined breakpoints.
+ * Optionally you can avoid generating the global one.
+ */
+@mixin media-generate($selector, $generate-base: true) {
+    @if ($generate-base) {
+        #{$selector} {
+            @content;
+        }
+    }
+    @each $media-breakpoint in $media-breakpoints {
+        @media #{nth($media-breakpoint, 2)} {
+            #{$selector}--#{nth($media-breakpoint, 1)} {
+                @content;
+            }
+        }
+    }
+}
+/**
+ * return "property: value" in rem with fallback in px
+ *
+ * e.g.
+ * margin-bottom: 24px;
+ * margin-bottom: 2.4rem;
+ */
+@mixin px-rem($property, $value) {
+    #{$property}: #{$value}px;
+    #{$property}: #{$value/10}rem;
+}
+/**
+ * ratio http://voormedia.com/blog/2012/11/responsive-background-images-with-fixed-or-fluid-aspect-ratios
+ *
+ * E.g. @include ratio(800px 200px, 300px 150px);
+ * E.g. @include ratio(16 9);
+ */
+@mixin ratio($large-size, $small-size: 0 0) {
+    $width-large: nth($large-size, 1);
+    $height-large: nth($large-size, 2);
+
+    $width-small: nth($small-size, 1);
+    $height-small: nth($small-size, 2);
+
+    $slope: ($height-large - $height-small) / ($width-large - $width-small);
+    $height: $height-small - $width-small * $slope;
+
+    height: if($height == 0, 0, $height * 1px);
+    padding-bottom: $slope * 100%;
+}
+// sprite
+@mixin sprite($url, $type: 'svg') {
+    @include hide-text;
+    border: 0;
+    border-radius: 0;
+    padding: 0;
+    display: block;
+    background-color: transparent;
+	background-repeat: no-repeat;
+    background-image: url($url + '.png');
+    @if ($type == 'png@2') {
+        @include hidpi(2) {
+            background-image: url($url + '@2.png');
+            background-size: image-width($url + '.png') image-height($url + '.png');
+        }
+    }
+    @if ($type == 'svg' or $type == 'svgz') {
+        background-image: -webkit-linear-gradient(transparent, transparent), url($url + '.' + $type);
+        background-image:         linear-gradient(transparent, transparent), url($url + '.' + $type);
+    }
+}
+// sprite element
+@mixin sprite-element($size, $coords: 0 0, $url: false, $type: 'svg') {
+    @if ($url) {
+        @include sprite($url, $type);
+    }
+    @include size(nth($size, 1) * 1px nth($size, 2) * 1px);
+    background-position: (-1 * nth($coords, 1) * 1px) (-1 * nth($coords, 2) * 1px);
+}
+// Lists
+// Normal list without styles
+@mixin list-stack {
+    padding-left: 0;
+    list-style-type: none;
+}
+// Inline list
+@mixin list-inline {
+    > * {
+        display: inline-block;
+    }
+}
+// Inline list without spacing between elements
+@mixin list-grid {
+    letter-spacing: -0.31em;
+    > * {
+        display: inline-block;
+        letter-spacing: normal;
+    }
+}
+// returns a set of background-image rules for svg backgrounds with png fallback support
+@mixin svg-background-image($src, $gzip: true) {
+    background-image: url($src + '.png');
+    background-image: -webkit-linear-gradient(transparent, transparent), url($src + '.svg' + if($gzip, 'z', ''));
+    background-image:         linear-gradient(transparent, transparent), url($src + '.svg' + if($gzip, 'z', ''));
+}

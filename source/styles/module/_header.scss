@@ -1,0 +1,32 @@
+@mixin header {
+    @include box;
+    @include padding(top);
+    @include margin(bottom);
+    
+    &, :link, :visited {
+        color: nth($header-color, 1);
+    }
+    background-color: nth($header-color, 2);
+    border-bottom: 1/3 * $base-margin solid nth($header-color, 1);
+    
+    @media (min-width: em(900)) {
+        margin-bottom: 3 * $base-margin;
+    }
+}
+@mixin header__menu {
+    text-align: right;
+}
+@mixin header__title {
+    font-weight: normal;
+    letter-spacing: -0.025em;
+    
+    @media (min-width: em(600)) {
+        font-size: 3em;
+    }
+    @media (min-width: em(900)) {
+        padding: {
+            top: 3 * $base-margin;
+            bottom: 3 * $base-margin;
+        }
+    }
+}

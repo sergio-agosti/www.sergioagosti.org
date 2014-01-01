@@ -1,0 +1,70 @@
+/* IE9- rules */
+html.lt-ie10 {
+
+    /* alternative to CSS3 flexbox */
+    .filter {
+        @include media('m-up') {
+            @include list-grid;
+            display: inline-block;
+        }
+    }
+}
+
+/* IE8- rules. */
+html.lt-ie9 {
+    
+    /* states */
+    .is-hidden--s,
+    .is-hidden--sm,
+    .is-hidden--sm-up,
+    .is-hidden--sm-to,
+    .is-hidden--l-to,
+    .is-hidden--m-to,
+    .is-hidden--x-to,
+    .is-hidden--lt-ie9 {
+        display: none !important;
+    }
+    
+    /* modules */
+    .oldies-alert {
+        line-height: 1.3;
+        font-size: x-large;
+        text-align: center;
+        padding: {
+            top: 120px;
+            bottom: 120px;
+        };
+    }
+    
+    // solves a IE8 bug when an anchor is empty and absolute positioned
+    .preview-anchor {
+        background-image: url("about:blank");
+    }
+    
+    /* layout */
+    @include _grid-generate('s');
+    @include _grid-generate('sm');
+}
+
+/* courtesy page rules. */
+html.lt-ie8,
+html.lt-ie9.has-no-js {
+    
+    /* general */
+    &, body {
+        background-color: #000;
+    }
+        
+    body {
+        width: 1600px;
+        margin: 0 auto;
+        padding: 16px;
+        
+        &, & a {
+            color: #fff;
+        }  
+        > * + * {
+            display: none !important;
+        }
+    }
+}
