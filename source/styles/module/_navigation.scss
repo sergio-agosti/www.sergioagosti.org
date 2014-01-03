@@ -32,5 +32,13 @@
                 left: 1/4 * $base-margin;
             }
         }
+        
+        html.has-no-flexbox & {
+            @include box(left);
+            
+            > * {
+                float: left;
+            }
+        }
     }
 }

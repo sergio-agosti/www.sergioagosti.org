@@ -3,6 +3,14 @@
         @content;
     }
 }
+@mixin _has-no-flexbox {
+    @supports not (flex-wrap: wrap) { // [1]
+        @content;
+    }
+    html.has-no-flexbox & {
+        @content;
+    }
+}
 
 @mixin page {
     @include _is-page-wide {
@@ -12,9 +20,10 @@
     
         > * {
             @include flex(1 100%);
+            width: 100%;
         }
-    
-        @supports not (flex-wrap: wrap) { // [1]
+        
+        @include _has-no-flexbox {
             @include display(block);
         }
     }
@@ -30,7 +39,7 @@
         max-width: $page-maxwidth;
     }
     
-    @supports not (flex-wrap: wrap) { // [1]
+    @include _has-no-flexbox {
         max-width: $page-maxwidth / 100 * 60;
     }
 }
@@ -40,15 +49,18 @@
         
         @if $content == "main" {
             @include flex(1 60%);
+            width: 60%;
             max-width: $page-maxwidth / 100 * 60;
         }
         @if $content == "aside" {
             @include flex(1 40%);
+            width: 40%;
             max-width: $page-maxwidth / 100 * 40;
         }
         
-        @supports not (flex-wrap: wrap) { // [1]
+        @include _has-no-flexbox {
             margin: { left: auto; right: auto; }
+            width: 100%;
             max-width: $page-maxwidth / 100 * 60;
         }
     }
