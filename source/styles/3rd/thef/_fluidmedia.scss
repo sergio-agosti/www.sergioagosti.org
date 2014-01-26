@@ -1,0 +1,15 @@
+//**
+//* Makes a media fluid.
+//*/
+@mixin thef-fluidmedia($full: false) {
+    height: auto;
+    display: block;
+    -ms-interpolation-mode: bicubic;
+    @if $full {
+        width: 100%;
+        @include box-sizing(border-box);
+    }
+    @else {
+        max-width: 100%;
+    }
+}

@@ -2,11 +2,12 @@
     a {
         display: block;
         text-decoration: none;
-        padding: 1/4 * $base-margin 1/2 * $base-margin;
         background-color: nth($footer-color, 2);
         color: nth($footer-color, 1);
         font-weight: 300;
         
+        @include thef-space(padding-top padding-bottom, 1/4);
+        @include thef-space(padding-left padding-right, 1/2);
         @include transition(color 400ms, background-color 400ms);
     }
     b a {
@@ -20,21 +21,19 @@
 }
 @mixin navigation__list {
     > * + * {
-        margin-top: 1/4 * $base-margin;
+        @include thef-space(margin-top, 1/4);
     }
     
     @media (min-width: em(400)) {
         @include display(flex);
         
         > * + * {
-            margin: {
-                top: 0;
-                left: 1/4 * $base-margin;
-            }
+            margin-top: 0;
+            @include thef-space(margin-left, 1/4);
         }
         
         html.has-no-flexbox & {
-            @include box(left);
+            @include thef-box(left);
             
             > * {
                 float: left;

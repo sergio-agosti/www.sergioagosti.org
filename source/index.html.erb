@@ -6,39 +6,39 @@ title: Sergio Agosti, Open-source Web Developer
 	<p><a href="#navigation" title="main menu"></a></p>
 	<h1>Sergio Agosti</h1>
 </header>
-<main role="main">
-    <p itemscope itemtype="http://schema.org/Person">My name is <strong itemprop="name">Sergio Agosti</strong> and I'm an <strong itemprop="jobTitle">Open-source Web Developer</strong> based in <strong itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">London, UK</strong>.</p>
-    <p>I'm currently employed as a Senior Web Developer at <strong><a href="http://theframeworks.com">The&nbsp;Frameworks</a></strong>, focussing on <strong>front-end responsive web development</strong>.</p>
+<main role="main" itemscope itemtype="http://schema.org/Person">
+    <p>My name is <strong itemprop="name">Sergio Agosti</strong> and I'm an <strong>Open-source Web Developer</strong> based in <strong itemprop="workLocation">London, UK</strong>.</p>
+    <p>I'm currently employed as a <span itemprop="jobTitle">Senior Web Developer</span> at <strong itemprop="worksFor" itemscope itemtype="http://schema.org/Organization"><a href="http://theframeworks.com" itemprop="url">The&nbsp;Frameworks</a></strong>, focussing on <strong>front-end responsive web development</strong>.</p>
     <p>In my free time I practice <strong>karate</strong>, which I have been doing since 1998. It is integral part of my life and it helps me to keep fit, both physically and mentally.</p>
 </main>
 <aside role="complementary">
-	<h3>Recent projects</h3>
-	<ul>
+	<h1>Recent projects</h1>
+	<ol>
 		<li>
     		<article>
-        		<h4>Project 1 - 10 Feb 2013</h4>
-        		<p><img src="http://placehold.it/800x450" class="fluidmedia"></p>
+        		<h1>Project 1 - 10 Feb 2013</h1>
+        		<p><img src="<%= lorem.image "800x450" %>"></p>
     		</article>
 		</li>
 		<li>
     		<article>
-        		<h4>Project 1 - 10 Feb 2013</h4>
-        		<p><img src="http://placehold.it/800x450" class="fluidmedia"></p>
+        		<h1>Project 1 - 10 Feb 2013</h1>
+        		<p><img src="<%= lorem.image "800x450" %>"></p>
     		</article>
 		</li>
 		<li>
     		<article>
-        		<h4>Project 1 - 10 Feb 2013</h4>
-        		<p><img src="http://placehold.it/800x450" class="fluidmedia"></p>
+        		<h1>Project 1 - 10 Feb 2013</h1>
+        		<p><img src="<%= lorem.image "800x450" %>"></p>
     		</article>
 		</li>
-	</ul>
+	</ol>
 </aside>
 <footer role="contentinfo" id="navigation">
 	<nav role="navigation">
 		<ul>
     		<li><b><a href="/">home</a></b></li>
-    		<li><a href="/">portfolio</a></li>
+    		<li><a href="/">projects</a></li>
     		<li><a href="/">curriculum vitae</a></li>
 		</ul>
 	</nav>

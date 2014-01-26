@@ -1,0 +1,19 @@
+//**
+//* thef-ratio see http://voormedia.com/blog/2012/11/responsive-background-images-with-fixed-or-fluid-aspect-ratios
+//*
+//* e.g. @include thef-ratio(800px 200px, 300px 150px);
+//* e.g. @include thef-ratio(16 9);
+//*/
+@mixin thef-ratio($large-size, $small-size: 0 0) {
+    $width-large: nth($large-size, 1);
+    $height-large: nth($large-size, 2);
+
+    $width-small: nth($small-size, 1);
+    $height-small: nth($small-size, 2);
+
+    $slope: ($height-large - $height-small) / ($width-large - $width-small);
+    $height: $height-small - $width-small * $slope;
+
+    height: if($height == 0, 0, $height * 1px);
+    padding-bottom: $slope * 100%;
+}

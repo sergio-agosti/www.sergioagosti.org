@@ -1,0 +1,16 @@
+//**
+//* Will contain its content entirely (i.e. top/bottom margins won't merge).
+//* You can optionally pass left/right/both to make the container act as clearfix.
+//*/
+@mixin thef-box($clear: null) {
+    &:after,
+    &:before {
+        content: "";
+        display: table;
+    }
+    @if $clear != null {
+        &:after {
+            clear: $clear;
+        }
+    }
+}

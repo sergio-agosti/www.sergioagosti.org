@@ -1,0 +1,21 @@
+//**
+//* Uses the default $base-space value with the given property(es)
+//*/
+@mixin thef-space($properties, $multiplier: 1, $em-value: false) {
+    $value: $base-space * $multiplier;
+    
+    @if $em-value != false {
+        $value: $value / 1px;
+    
+        @if $em-value != true {
+            $value: em($value, $em-value);
+        }
+        @else {
+            $value: em($value);
+        }
+    }
+    
+    @each $property in $properties {
+        #{$property}: $value;
+    }
+}

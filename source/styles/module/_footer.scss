@@ -1,12 +1,15 @@
 @mixin footer {
-    @include box;
-    @include padding(top);
+    @include thef-box;
+    @include thef-space(padding-top);
+    @include thef-space(border-top-width, 1/3);
     
+    border-top: {
+        style: solid;
+        color: $menu-color;
+    }
     background-color: nth($footer-color, 2);
-    border-top: 1/3 * $base-margin solid $menu-color;
-
+    
     @media (min-width: em(900)) {
-        margin-top: 2 * $base-margin;
-        padding-bottom: 2 * $base-margin;
+        @include thef-space(margin-top padding-bottom, 2);
     }
 }

@@ -4,13 +4,11 @@
 
 $base-font-size:   18px;
 $base-line-height: 24px;
-$base-margin:      $base-line-height; // 2 3 4 6 8 12
+$base-space:       $base-line-height; // 2 3 4 6 8 12
 
 /*
  * custom options
  */
-
-// colours
 
 $base-color: #191919;
 $base-background-color: #f3f3f3;
@@ -20,64 +18,6 @@ $theme-color-2: #32463a;
 $theme-color-3: #d8a13a;
 $theme-color-4: #e4e8eb;
 $theme-color-5: #c83c2f;
-
-// brakepoints
-
-$media-breakpoint--ss: 500px;
-$media-breakpoint--s:  714px;
-$media-breakpoint--m:  970px;
-$media-breakpoint--l: 1288px;
-$media-breakpoint--x: 1606px;
-
-$media-breakpoints: (
-    
-    'ss'    'only screen and (max-width: ' + ($media-breakpoint--ss    ) + ')',
-    'sm-to' 'only screen and (max-width: ' + ($media-breakpoint--ss    ) + ')',
-    'sm-up' 'only screen and (min-width: ' + ($media-breakpoint--ss + 1) + ')',
-    'sm'    'only screen and (min-width: ' + ($media-breakpoint--ss + 1) + ') and (max-width: ' + $media-breakpoint--s + ')',
-    
-    's'     'only screen and (max-width: ' + ($media-breakpoint--s     ) + ')',
-    
-    'm-to'  'only screen and (max-width: ' + ($media-breakpoint--m     ) + ')',
-    'm-up'  'only screen and (min-width: ' + ($media-breakpoint--s  + 1) + ')',
-    'm'     'only screen and (min-width: ' + ($media-breakpoint--s  + 1) + ') and (max-width: ' + $media-breakpoint--m + ')',
-    
-    'l-to'  'only screen and (max-width: ' + ($media-breakpoint--l     ) + ')',
-    'l-up'  'only screen and (min-width: ' + ($media-breakpoint--m  + 1) + ')',
-    'l'     'only screen and (min-width: ' + ($media-breakpoint--m  + 1) + ') and (max-width: ' + $media-breakpoint--l + ')',
-    
-    'x-to'  'only screen and (max-width: ' + ($media-breakpoint--x     ) + ')',
-    'x-up'  'only screen and (min-width: ' + ($media-breakpoint--l  + 1) + ')',
-    'x'     'only screen and (min-width: ' + ($media-breakpoint--l  + 1) + ') and (max-width: ' + $media-breakpoint--x + ')',
-    
-    'h'     'only screen and (min-width: ' + ($media-breakpoint--x  + 1) + ')',
-    
-    'height-s-to' 'only screen and (max-height: 339px)',
-    'height-s-up' 'only screen and (min-height: 340px)',
-    'height-m-to' 'only screen and (max-height: 479px)',
-    'height-m-up' 'only screen and (min-height: 480px)',
-    'height-l-to' 'only screen and (max-height: 799px)',
-    'height-l-up' 'only screen and (min-height: 800px)',
-    
-    'retina' '(-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi)'  
-);
-
-// grid
-
-$grid-breakpoints: (
-    'ss' 'only screen and (max-width: ' + ($media-breakpoint--ss    ) + ')',
-    'sm' 'only screen and (min-width: ' + ($media-breakpoint--ss + 1) + ') and (max-width: ' + $media-breakpoint--s + ')',
-    's'  'only screen and (max-width: ' + ($media-breakpoint--s     ) + ')',
-    'm'  'only screen and (min-width: ' + ($media-breakpoint--s  + 1) + ') and (max-width: ' + $media-breakpoint--m + ')',
-    'l'  'only screen and (min-width: ' + ($media-breakpoint--m  + 1) + ') and (max-width: ' + $media-breakpoint--l + ')',
-    'x'  'only screen and (min-width: ' + ($media-breakpoint--l  + 1) + ') and (max-width: ' + $media-breakpoint--x + ')',
-    'h'  'only screen and (min-width: ' + ($media-breakpoint--x  + 1) + ')'
-);
-
-$grid-is-semantic: true;
-// grid gutter
-$grid-gutter: $base-margin;
-
 
 $page-maxwidth: 1200px;
 $header-color: (darken(#e6e6e6, 70%) darken(#e6e6e6, 5%));

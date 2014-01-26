@@ -1,0 +1,75 @@
+/**
+ * [1] Allow using rem unit easily (1rem = 10px).
+ */
+html {
+    font-size: percentage(10 / 16); /* [1] */
+}
+/**
+ * [1] Set the base font size back to default.
+ *
+ * [2] Using em as a line-height unit allows a fixed vertical rhythm. Note that
+ *     the line-height is calculated against the element's font-size to which it 
+ *     is applied, and the resulting value is inherited by the children elements.
+ *
+ * [3] Optimise kerning
+ */
+body {
+    font-size: percentage($base-font-size / 10px); /* [1] */
+    line-height: em($base-line-height / 1px); /* [2] */
+    text-rendering: optimizeLegibility; /* [3] */
+    background-color: $base-background-color;
+    
+    @media (min-width: em(600)) {
+        font-size: percentage(($base-font-size + 2) / 10px);
+    }
+}
+/*
+ * Set the foreground colour.
+ */
+body, :link, :visited {
+    color: $base-color;
+}
+/*
+ * Disable the dotted outline on anchors when active/focus.
+ */
+a:active, a:focus {
+    outline: 0;
+}
+/**
+ * Set the line-height for the h1.
+ */
+h1 {
+    line-height: 1.125em;
+}
+/**
+ * Remove margin-top and add a fixed margin-bottom on elements
+ * which have top and bottom margins by default.
+ */
+blockquote, dl, fieldset, figure, h1, h2, h3, h4, h5, h6, hr, menu, ol, p, ul {
+    margin: {
+        top: 0;
+        bottom: $base-space;
+    }
+}
+/**
+ * Remove margin bottom in some circumstances.
+ */
+fieldset > :last-child,
+dl dl, dl menu, dl ol, dl ul,
+menu dl, menu menu, menu ol, menu ul,
+ol dl, ol menu, ol ol, ol ul,
+ul dl, ul menu, ul ol, ul ul {
+    margin-bottom: 0;
+}
+/**
+ * Define custom fonts.
+ */
+.tk-calluna,
+body {
+    font-family: "calluna", serif;
+}
+.tk-calluna-sans,
+[role="navigation"],
+h1,h2,h3,h4,h5,h6 {
+    font-family: "calluna-sans", sans-serif;
+}

@@ -1,8 +1,0 @@
-.l-footer {
-    @include media('m-up') {
-        padding: {
-            top: 4 * $base-margin * 1px;
-            bottom: 3 * $base-margin * 1px;
-        }
-    }
-}

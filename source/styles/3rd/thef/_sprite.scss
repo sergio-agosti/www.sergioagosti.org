@@ -1,0 +1,31 @@
+// sprite
+@mixin thef-sprite($url, $type: 'svg') {
+    @include hide-text;
+    border: 0;
+    border-radius: 0;
+    padding: 0;
+    background: {
+        repeat: no-repeat;
+        color: transparent;
+        image: url($url + '.png');
+    }
+    @if ($type == 'png@2') {
+        @include hidpi(2) {
+            background: {
+                image: url($url + '@2.png');
+                size: image-width($url + '.png') image-height($url + '.png');
+            }
+        }
+    }
+    @if ($type == 'svg' or $type == 'svgz') {
+        @include background-image(linear-gradient(transparent, transparent), url($url + '.' + $type));
+    }
+}
+// sprite element
+@mixin thef-sprite--element($size, $coords: 0 0, $url: false, $type: 'svg') {
+    @if ($url) {
+        @include thef-sprite($url, $type);
+    }
+    @include size((nth($size, 1) * 1px) (nth($size, 2) * 1px));
+    background-position: (-1 * nth($coords, 1) * 1px) (-1 * nth($coords, 2) * 1px);
+}

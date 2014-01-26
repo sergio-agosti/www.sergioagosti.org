@@ -1,36 +1,67 @@
-/**
- * Container that limits the width of the main content of the page.
- */
-
-.l-page {
-    margin: {
-        left: auto;
-        right: auto;
+@mixin _is-page-wide {
+    @media (min-width: em(900)) {
+        @content;
     }
-    max-width: 2 * $slot-max-width + $base-margin * 1px;
-
-    @include media('m-up') {
-        max-width: 6 * $slot-max-width + 5 * $base-margin * 1px;
+}
+@mixin _page--has-no-flexbox {
+    @supports not (flex-wrap: wrap) {
+        @content;
+    }
+    html.has-no-flexbox & {
+        @content;
     }
 }
 
-@include media-generate('.l-page--v-inner') {
-    padding: {
-        left: $base-margin * 1px;
-        right: $base-margin * 1px;
+@mixin page {
+    @include _is-page-wide {
+        @include display(flex);
+        @include flex-wrap(wrap);
+        @include justify-content(center);
+    
+        > * {
+            @include flex(1 100%);
+            width: 100%;
+        }
+        
+        @include _page--has-no-flexbox {
+            @include display(block);
+        }
     }
 }
-
-.l-page--v-content {
-    @include media('m-up') {
-        max-width: 4 * $slot-max-width + 3 * $base-margin * 1px;
+@mixin page__content {
+    @include thef-space(padding-left padding-right);
+    @include box-sizing(border-box);
+    
+    margin: { left: auto; right: auto; }
+    max-width: $page-maxwidth / 100 * 60;
+    
+    @include _is-page-wide {
+        max-width: $page-maxwidth;
+    }
+    
+    @include _page--has-no-flexbox {
+        max-width: $page-maxwidth / 100 * 60;
     }
 }
-.l-page--v-padded {
-    @include media('m-up') {
-        padding: {
-            left: 5 * $base-margin * 1px;
-            right: 5 * $base-margin * 1px;
+@mixin page__content--column($content: null) {
+    @include _is-page-wide {
+        margin: { left: 0; right: 0; }
+        
+        @if $content == "main" {
+            @include flex(1 60%);
+            width: 60%;
+            max-width: $page-maxwidth / 100 * 60;
+        }
+        @if $content == "aside" {
+            @include flex(1 40%);
+            width: 40%;
+            max-width: $page-maxwidth / 100 * 40;
+        }
+        
+        @include _page--has-no-flexbox {
+            margin: { left: auto; right: auto; }
+            width: 100%;
+            max-width: $page-maxwidth / 100 * 60;
         }
     }
 }

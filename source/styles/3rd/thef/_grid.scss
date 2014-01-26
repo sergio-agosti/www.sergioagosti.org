@@ -1,0 +1,276 @@
+//**
+//* This is a fully responsive grid
+//*
+//* - fluid
+//* - nestable
+//* - responsive
+//*      - by default, you'll have s (small), m (medium), l (large) and x (extralarge) grids
+//*      - by default, you'll have 1 to 12 columns grids
+//* - optional vertical gutter
+//*/
+//
+//**
+//* Defines a grid container.
+//*
+//* @param $grid-options some options for the grid (for example, gutter)
+//*/
+@mixin thef-grid($grid-options...) {
+    @if length($grid-options) > 0 {
+        @each $option in $grid-options {
+            @extend #{$_grid-ct}grid--#{$grid-options};
+        }
+    } @else {
+        @extend #{$_grid-ct}grid;
+    }
+}
+//**
+//* Defines a grid column.
+//*
+//* @param $grid-media-size the size of the media for this column
+//* @param $grid-column the column definition in the form A B,
+//*                     where A is the width of the column and B is the number of columns
+//*      e.g. 1 3 for a 1:3 (one third) column
+//* @param $grid-options optional options for the column
+//*      e.g. newrow, skip 1 5, pull 2 3, center
+//*/
+@mixin thef-grid__column($grid-media-size, $grid-column, $grid-options...) {
+    @each $option in $grid-options {
+        @if length($option) == 3 {
+            @extend #{$_grid-ct}grid__#{$grid-media-size}--#{nth($option, 1)}--#{nth($option, 2)}-#{nth($option, 3)};
+        } @else {
+            @extend #{$_grid-ct}grid__#{$grid-media-size}--#{$option};
+        }
+    }
+    @extend #{$_grid-ct}grid__#{$grid-media-size}--#{nth($grid-column, 1)}-#{nth($grid-column, 2)};
+}
+
+
+
+//* ========================================================================== */
+//* ========================================================================== */
+//* ========================================================================== */
+
+@import "box";
+
+$grid-breakpoints: (
+    's'     '(max-width: 500px)',
+    'ss'    '(max-width: 410px)',
+    'sl'    '(min-width: 411px) and (max-width: 500px)',
+    'sl-up' '(min-width: 411px)',
+    'm'     '(min-width: 501px) and (max-width: 850px)',
+    'm-up'  '(min-width: 501px)',
+    'm-to'  '(max-width: 850px)',
+    'l'     '(min-width: 851px) and (max-width: 1300px)',
+    'l-up'  '(min-width: 851px)',
+    'l-to'  '(max-width: 1300px)',
+    'x'     '(min-width: 1301px)'
+) !default;
+$grid-columns: 1 2 3 4 5 6 7 8 9 10 11 12 !default;
+$grid-is-semantic: true !default;
+$grid-notify-js: false !default;
+$grid-gutter: $base-space !default;
+$grid-define-the-all-media: true !default;
+
+//**
+//* general usage
+//*
+//* .grid is the grid container
+//* .grid__A--B-C is a column with a ratio of B:C for the A size grid
+//*      e.g. .grid__m--1-3 is a column of 1:3 (one third) for the m size grid
+//* .grid__A--skip--B-C is a column with B on C empty space before for the A size grid
+//* .grid__A--pull--B-C is a column shifted of B on C on the left for the A size grid
+//* .grid__A--push--B-C is a column shifted of B on C on the right for the A size grid
+//* .grid__A--newrow is a first line column for the A size grid
+//*      this ensures the column starts on a new line
+//* .grid__A--center is a centered column
+//*      this column will be the only one of its row
+//*
+//* Markup example:
+//*
+// 
+// <grid-container class="grid">
+//     <grid-column class="grid__l--1-3 grid__x--1-5"></grid-column>
+//     <grid-column class="grid__l--2-3 grid__x--2-5"></grid-column>
+//     <grid-column class="grid__l--1-2 grid__l--newrow grid__x--2-5"></grid-column>
+//     <grid-column class="grid__l--1-2 grid__x--newrow"></grid-column>
+//     ...
+// </grid-container>
+//
+//*
+//* grid with gutter (defined in $grid-gutter)
+//
+// <grid-container class="grid--gutter">
+//    ...
+//
+//* semantic markup/style example
+//*
+//* HTML 
+//
+// <main>
+//     <article></article>
+//     <aside></aside>
+// </main>
+//
+//*
+//* SASS
+//
+// main {
+//     @extend %grid;
+// }
+// main > article {
+//     @extend %grid__m--1-2;
+//     @extend %grid__l--2-3;
+//     @extend %grid__x--3-4;
+// }
+// main > aside {
+//     @extend %grid__m--1-2;
+//     @extend %grid__l--1-3;
+//     @extend %grid__x--1-4;
+// }
+//
+//* grid with gutter (no need to @extend %grid as well)
+//
+// main {
+//     @extend %grid--gutter;
+// }
+
+//*
+//*/
+
+// grid class-type: this allows the use of 'traditional' or 'silent' classes
+$_grid-ct: if($grid-is-semantic, unquote("%"), unquote("."));
+
+
+// define the style of the grid container
+#{$_grid-ct}grid {
+    @include thef-box(both);
+    > * {
+        float: left;
+    }
+}
+#{$_grid-ct}grid--inline {
+    display: inline-block;
+    vertical-align: bottom;
+}
+#{$_grid-ct}grid--gutter {
+    @extend #{$_grid-ct}grid;
+    margin-left: -1 * $grid-gutter;
+    > * {
+        @include box-sizing(border-box);
+        padding-left: $grid-gutter;
+    }
+}
+
+@mixin _grid-generate($grid-breakpoint-size) {
+    // generates the elements for each grid size
+    @each $i in $grid-columns {
+        // generates the elements for this grid size
+        $j: 1;
+        @while $j <= $i {
+        
+            $ratio: percentage($j/$i);
+            
+            #{$_grid-ct}grid__#{$grid-breakpoint-size}--#{$j}-#{$i} {
+                width: $ratio;
+            }
+            #{$_grid-ct}grid__#{$grid-breakpoint-size}--skip--#{$j}-#{$i} {
+                margin-left: $ratio;
+            }
+            #{$_grid-ct}grid__#{$grid-breakpoint-size}--pull--#{$j}-#{$i},
+            #{$_grid-ct}grid__#{$grid-breakpoint-size}--push--#{$j}-#{$i} {
+                position: relative;
+            }
+            #{$_grid-ct}grid__#{$grid-breakpoint-size}--pull--#{$j}-#{$i} {
+                right: $ratio;
+            }
+            #{$_grid-ct}grid__#{$grid-breakpoint-size}--push--#{$j}-#{$i} {
+                left: $ratio;
+            }
+            
+            $j: $j + 1;
+        }
+    }
+    // this is the first column of a row
+    #{$_grid-ct}grid__#{$grid-breakpoint-size}--newrow {
+        clear: both;
+    }
+    // this is the last column of a row
+    #{$_grid-ct}grid__#{$grid-breakpoint-size}--endrow {
+        + * {
+            clear: both;
+        }
+    }
+    // this column is centered
+    #{$_grid-ct}grid__#{$grid-breakpoint-size}--center {
+        float: none;
+        clear: both;
+        margin: {
+            left: auto;
+            right: auto;
+        }
+    }
+    // this column is removed
+    #{$_grid-ct}grid__#{$grid-breakpoint-size}--hidden {
+        display: none;
+    }
+    // this column is floating the opposite way
+    #{$_grid-ct}grid__#{$grid-breakpoint-size}--revdir {
+        float: right;
+    }
+    // this column is floating the opposite way
+    #{$_grid-ct}grid__#{$grid-breakpoint-size}--nowrap {
+        white-space: nowrap;
+    }
+    // the content of this column is left-align
+    #{$_grid-ct}grid__#{$grid-breakpoint-size}--text-left {
+        text-align: left;
+    }
+    // the content of this column is center-align
+    #{$_grid-ct}grid__#{$grid-breakpoint-size}--text-center {
+        text-align: center;
+    }
+    // the content of this column is right-align
+    #{$_grid-ct}grid__#{$grid-breakpoint-size}--text-right {
+        text-align: right;
+    }
+}
+
+//**
+//* This will notify JavaScript for changes on the grid layout when resizing the browser's window
+//*
+//* See http://css-tricks.com/media-query-change-detection-in-javascript-through-css-animations/
+//*/
+@if $grid-notify-js {
+    #{$_grid-ct}grid--notify-js {
+        @include animation-duration(1ms);
+    }
+}
+
+// define the grids for each breakpoint
+@each $grid-breakpoint in $grid-breakpoints {
+
+    $grid-breakpoint-size: nth($grid-breakpoint, 1);
+    $grid-breakpoint-rule: nth($grid-breakpoint, 2);
+    $grid-breakpoint-anim: 'grid__media--' + $grid-breakpoint-size;
+    
+    @if $grid-notify-js {
+        @include keyframes($grid-breakpoint-anim) {
+            from { clip: rect(1px, auto, auto, auto); }
+            to   { clip: rect(0px, auto, auto, auto); }
+        }
+    }
+    
+    @media #{nth($grid-breakpoint, 2)} {
+        @include _grid-generate($grid-breakpoint-size);
+        @if $grid-notify-js {
+            #{$_grid-ct}grid--notify-js {
+                @include animation-name($grid-breakpoint-anim);
+            }
+        }
+    }
+}
+
+@if $grid-define-the-all-media {
+    // define the grids outside breakpoint
+    @include _grid-generate('all');
+}

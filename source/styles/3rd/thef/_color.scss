@@ -1,0 +1,20 @@
+//**
+//* Set foreground/background colour. If $colorlinks is true, sets the colour of the links as well.
+//*/
+@mixin thef-color($foreground, $background: null, $links: true) {
+    @if $links {
+        &, &:link, &:visited, :link, :visited {
+            color: $foreground;
+        }
+    }
+    @else {
+        & {
+            color: $foreground;
+        }
+    }
+    @if $background != null {
+        & {
+            background-color: $background;
+        }
+    }
+}
