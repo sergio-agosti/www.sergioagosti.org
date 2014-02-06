@@ -1,5 +1,5 @@
 //**
-//* Makes a media fluid.
+//* Makes a media, such as <img> or <video>, fluid.
 //*/
 @mixin thef-fluidmedia($full: false) {
     height: auto;

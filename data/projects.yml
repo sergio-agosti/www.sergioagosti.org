@@ -1,0 +1,11 @@
+- name: Project 1
+  slug: project-1
+  published: 2013-02-10
+  
+- name: Project 2
+  slug: project-2
+  published: 2013-03-22
+  
+- name: Project 3
+  slug: project-3
+  published: 2013-10-08

@@ -7,13 +7,13 @@
 @mixin thef-ratio($large-size, $small-size: 0 0) {
     $width-large: nth($large-size, 1);
     $height-large: nth($large-size, 2);
-
+    
     $width-small: nth($small-size, 1);
     $height-small: nth($small-size, 2);
-
+    
     $slope: ($height-large - $height-small) / ($width-large - $width-small);
     $height: $height-small - $width-small * $slope;
-
-    height: if($height == 0, 0, $height * 1px);
+    
+    height: if($height <= 0, 0, $height * 1px);
     padding-bottom: $slope * 100%;
 }

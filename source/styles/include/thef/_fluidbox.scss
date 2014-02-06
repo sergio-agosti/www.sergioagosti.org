@@ -1,0 +1,30 @@
+//**
+//* Makes a container fluid. The container keeps the given ratio and the content stretches to fill it.
+//*/
+
+@import "ratio";
+
+@mixin thef-fluidbox($ratio-large-size, $ratio-small-size: 0 0, $content-selector: "> :first-child") {
+
+    // the second parameter is actually the content-selector
+    @if (length($ratio-small-size) == 1) {
+        $content-selector: $ratio-small-size;
+        $ratio-small-size: 0 0;
+    }
+
+    position: relative;
+    
+    &:before {
+        content: "";
+        display: block;
+        @include thef-ratio($ratio-large-size, $ratio-small-size);
+    }
+    & #{$content-selector} {
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        overflow: hidden;
+        position: absolute;
+    }
+}

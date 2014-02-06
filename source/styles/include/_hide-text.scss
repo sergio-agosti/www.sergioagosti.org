@@ -1,0 +1,6 @@
+// re-defines bourboun hide-text mixin to enforce rules sometimes overwritten
+@mixin hide-text {
+    color: transparent !important;
+    font: 0/0 a !important;
+    text-shadow: none !important;
+}

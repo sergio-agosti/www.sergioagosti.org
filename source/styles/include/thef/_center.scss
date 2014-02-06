@@ -1,0 +1,12 @@
+//**
+//* Centers a block-level element
+//*/
+@mixin thef-center($display: null) {
+    margin: {
+        left: auto;
+        right: auto;
+    }
+    @if $display != null {
+        display: $display;
+    }
+}

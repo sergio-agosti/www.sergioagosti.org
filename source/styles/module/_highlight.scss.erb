@@ -1,0 +1,12 @@
+<%= Rouge::Themes::Base16::Monokai.render(:scope => '.highlight') %>
+
+.highlight {
+    font-size: smaller;
+    @include thef-space(padding, .5);
+    
+    @include thef-media('s') {
+        .c {
+            display: none;
+        }
+    }
+}

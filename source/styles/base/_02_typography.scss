@@ -45,7 +45,7 @@ h1 {
  * Remove margin-top and add a fixed margin-bottom on elements
  * which have top and bottom margins by default.
  */
-blockquote, dl, fieldset, figure, h1, h2, h3, h4, h5, h6, hr, menu, ol, p, ul {
+blockquote, dl, fieldset, figure, h1, h2, h3, h4, h5, h6, hr, menu, ol, p, pre, ul {
     margin: {
         top: 0;
         bottom: $base-space;

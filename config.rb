@@ -1,4 +1,4 @@
-Sass::Script::Number.precision = 8
+Sass::Script::Number.precision = 14
 
 ###
 # Compass
@@ -6,7 +6,7 @@ Sass::Script::Number.precision = 8
 
 # Change Compass configuration
 # compass_config do |config|
-   config.output_style = :compact
+#  config.output_style = :compact
 # end
 
 ###
@@ -27,8 +27,9 @@ Sass::Script::Number.precision = 8
 # end
 
 # Proxy pages (http://middlemanapp.com/dynamic-pages/)
-# proxy "/this-page-has-no-template.html", "/template-file.html", :locals => {
-#  :which_fake_page => "Rendering a fake page with a local variable" }
+data.projects.each do |project|
+    proxy "/projects/#{project.slug}.html", "/project.html", :locals => { :project => project }
+end
 
 ###
 # Helpers
@@ -40,8 +41,14 @@ activate :automatic_image_sizes
 # Reload the browser automatically whenever files change
 activate :livereload
 
+# Enables directory indexes
+activate :directory_indexes
+
 # http://bourbon.io
 activate :bourbon
+
+# https://github.com/middleman/middleman-syntax
+activate :syntax
 
 # Methods defined in the helpers block are available in templates
 # helpers do
@@ -69,6 +76,7 @@ configure :build do
 
   # Use relative URLs
   activate :relative_assets
+  set :relative_links, true
 
   # Or use a different image path
   # set :http_prefix, "/Content/images/"

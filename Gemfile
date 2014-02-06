@@ -12,3 +12,6 @@ gem "wdm", "~> 0.1.0", :platforms => [:mswin, :mingw]
 
 # https://github.com/railsjedi/middleman-bourbon
 gem "middleman-bourbon"
+
+# https://github.com/middleman/middleman-syntax
+gem "middleman-syntax"

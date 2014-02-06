@@ -6,7 +6,7 @@
     
     @if $em-value != false {
         $value: $value / 1px;
-    
+        
         @if $em-value != true {
             $value: em($value, $em-value);
         }
