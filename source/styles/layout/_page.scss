@@ -4,7 +4,7 @@
     }
 }
 @mixin _page--has-no-flexbox {
-    @supports not (flex-wrap: wrap) {
+    @supports ( not ((-moz-flex-wrap: wrap) or (flex-wrap: wrap)) ) {
         @content;
     }
     html.has-no-flexbox & {
