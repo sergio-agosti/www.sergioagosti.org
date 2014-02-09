@@ -64,12 +64,9 @@ ul dl, ul menu, ul ol, ul ul {
 /**
  * Define custom fonts.
  */
-.tk-calluna,
 body {
-    font-family: "calluna", serif;
-}
-.tk-calluna-sans,
-[role="navigation"],
-h1,h2,h3,h4,h5,h6 {
     font-family: "calluna-sans", sans-serif;
+}
+code, kbd, pre, samp {
+    font-family: "anonymous-pro", monospace;
 }

@@ -1,0 +1,18 @@
+---
+title: Web projects - Sergio Agosti, Open-source Web Developer
+---
+
+<%= partial "layouts/header", :locals => { :title => "Web projects" } %>
+<main role="main">
+    <ol>
+	<% data.projects.each do |project| %>
+		<li>
+    		<article>
+    		    <h1><%= project.name %> - <%= project.published %></h1>
+        		<p><img src="<%= lorem.image "800x450" %>"></p>
+    		</article>
+		</li>
+    <% end %>
+	</ol>
+</main>
+<%= partial "layouts/footer", :locals => { :navigation => { :active => 'home' } } %>
