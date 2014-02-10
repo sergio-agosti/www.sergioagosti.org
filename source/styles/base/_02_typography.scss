@@ -32,8 +32,20 @@ body, :link, :visited {
 /*
  * Disable the dotted outline on anchors when active/focus.
  */
-a:active, a:focus {
-    outline: 0;
+a {
+    text-decoration: none;
+    border-bottom: 2px solid lighten($base-color, 20%);
+    @include transition(border-bottom-color 400ms);
+    
+    &:focus,
+    &:active {
+        outline: 0;
+    }
+    &:hover,
+    &:focus,
+    &:active {
+        border-bottom-color: $theme-color-3;
+    }
 }
 /**
  * Set the line-height for the h1.

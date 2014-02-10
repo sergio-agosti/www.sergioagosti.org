@@ -2,6 +2,9 @@ a[href="#navigation"] {
     @include menuicon($menu-color, nth($header-color, 1), nth($header-color, 2));
     vertical-align: bottom;
 }
+img {
+    @include thef-fluidmedia;
+}
 
 
 
@@ -26,6 +29,7 @@ a[href="#navigation"] {
     }
 }
 
+[role="main"],
 [role="navigation"],
 [role="complementary"] {
     > ul,
@@ -40,9 +44,6 @@ a[href="#navigation"] {
     }
     article h1 {
         font-size: 1em;
-    }
-    img {
-        @include thef-fluidmedia;
     }
 }
 

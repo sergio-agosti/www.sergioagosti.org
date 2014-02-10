@@ -1,7 +1,7 @@
 @mixin navigation {
     a {
         display: block;
-        text-decoration: none;
+        border-bottom: none;
         background-color: nth($footer-color, 2);
         color: nth($footer-color, 1);
         font-weight: 300;

@@ -1,18 +1,24 @@
----
-title: Web projects - Sergio Agosti, Open-source Web Developer
----
+<% content_for(:title, "Web projects - Sergio Agosti, Open-source Web Developer") %>
 
 <%= partial "layouts/header", :locals => { :title => "Web projects" } %>
+
 <main role="main">
     <ol>
 	<% data.projects.each do |project| %>
 		<li>
     		<article>
-    		    <h1><%= project.name %> - <%= project.published %></h1>
-        		<p><img src="<%= lorem.image "800x450" %>"></p>
-    		</article>
+                <h1>
+                    <%= link_to "#{project.name} - #{project.published}", "/projects/#{project.slug}.html" %>
+                </h1>
+                <p>
+                    <% link_to "/projects/#{project.slug}.html" do %>
+                        <%= tag :img, :src => lorem.image("800x450") %>
+                    <% end %>
+                </p>
+            </article>
 		</li>
     <% end %>
 	</ol>
 </main>
-<%= partial "layouts/footer", :locals => { :navigation => { :active => 'home' } } %>
+
+<%= partial "layouts/footer", :locals => { :navigation => { :active => '/projects.html' } } %>
