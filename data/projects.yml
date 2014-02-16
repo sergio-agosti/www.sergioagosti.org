@@ -1,11 +1,19 @@
-- name: Project 1
-  slug: project-1
-  published: 2013-02-10
-  
-- name: Project 2
-  slug: project-2
-  published: 2013-03-22
-  
-- name: Project 3
-  slug: project-3
-  published: 2013-10-08
+- name: Together Commerce 2014
+  slug: together-commerce-2014
+  published: 2014-01-01
+  images:
+    thumb:
+        src: CategoryEdge-TogetherCommerce-ToshibaGlobalCommerceSolutions.jpg
+        alt: 
+    small:
+        src: CategoryEdge-TogetherCommerce-ToshibaGlobalCommerceSolutions(small).jpg
+        alt: 
+    medium:
+        src: CategoryEdge-TogetherCommerce-ToshibaGlobalCommerceSolutions(medium).jpg
+        alt: 
+    large:
+        src: CategoryEdge-TogetherCommerce-ToshibaGlobalCommerceSolutions(large).jpg
+        alt: 
+    extra:
+        src: CategoryEdge-TogetherCommerce-ToshibaGlobalCommerceSolutions(extra).jpg
+        alt: 

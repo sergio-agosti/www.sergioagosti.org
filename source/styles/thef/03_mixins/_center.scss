@@ -1,0 +1,10 @@
+//**
+//* Centers a block-level element.
+//*/
+@mixin thef-center {
+    display: block;
+    margin: {
+        left: auto;
+        right: auto;
+    }
+}

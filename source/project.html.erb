@@ -1,11 +1,22 @@
-<% content_for(:title, "#{project.name} web project - Sergio Agosti, Open-source Web Developer") %>
+<% content_for :title, "#{project.name} web project - Sergio Agosti, Open-source Web Developer" %>
 
 <%= partial "layouts/header", :locals => { :title => project.name } %>
 
 <main role="main">
-    
-    ...
-
+    <%= partial "content/projects/#{project.slug}/description" %>
+    <p><%= lorem.paragraph %></p>
 </main>
+<aside role="complementary">
+    <p>tags, etc...</p>
+</aside>
+
+<div class="gallery">
+    <ul>
+        <li><%= image_tag "projects/#{project.slug}/#{project.images.small.src}", :alt => project.images.small.alt %></li>
+        <li><%= image_tag "projects/#{project.slug}/#{project.images.medium.src}", :alt => project.images.medium.alt %></li>
+        <li><%= image_tag "projects/#{project.slug}/#{project.images.large.src}", :alt => project.images.large.alt %></li>
+        <li><%= image_tag "projects/#{project.slug}/#{project.images.extra.src}", :alt => project.images.extra.alt %></li>
+    </ul>
+</div>
 
 <%= partial "layouts/footer", :locals => { :navigation => { :active => '/projects.html' } } %>

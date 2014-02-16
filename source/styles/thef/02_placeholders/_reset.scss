@@ -1,7 +1,7 @@
-/*
- * Reset default browsers's styles such as margins/padding in ul/ol/blockquote elements   
- */
-a%_reset {
+//**
+//* Reset default browsers's styles such as margins/padding in ul/ol/blockquote elements. 
+//*/
+:link%_reset {
     text-decoration: none;
 }
 ul%_reset,

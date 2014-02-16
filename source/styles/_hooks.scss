@@ -1,6 +1,5 @@
 a[href="#navigation"] {
     @include menuicon($menu-color, nth($header-color, 1), nth($header-color, 2));
-    vertical-align: bottom;
 }
 img {
     @include thef-fluidmedia;
@@ -40,10 +39,19 @@ img {
 
 [role="complementary"] {
     h1 {
-        font-size: 1.17em;
+        font-size: 1.8em;
     }
     article h1 {
-        font-size: 1em;
+        font-size: 1.4em;
+    }
+}
+
+.gallery {
+    @include gallery;
+    
+    ul {
+        @extend %_reset;
+        @include gallery__list;
     }
 }
 

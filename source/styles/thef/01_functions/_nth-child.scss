@@ -1,0 +1,22 @@
+//**
+//* Basic support for :nth-child pseudo class selector.
+//* So far, it only supports simple :nth-child(<number>) selector.
+//*/
+@function nth-child($n) {
+
+    @if type-of($n) == number {
+        
+        $nth-child: first-child;
+        
+        @for $i from 2 through $n {
+        
+            $nth-child: append($nth-child, #{" + *"});
+        }
+        
+        @return #{":"}$nth-child;
+    }
+    @else {
+    
+        @return null;
+    }
+}

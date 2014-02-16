@@ -1,17 +1,17 @@
-<% content_for(:title, "Sergio Agosti, Open-source Web Developer") %>
+<% content_for :title, "Sergio Agosti, Open-source Web Developer" %>
 
 <%= partial "layouts/header", :locals => { :title => "Sergio Agosti" } %>
 
 <main role="main" itemscope itemtype="http://schema.org/Person">
-    <p>My name is <strong itemprop="name">Sergio Agosti</strong> and I'm an <strong>Open-source Web Developer</strong> based in <strong itemprop="workLocation">London, UK</strong>. My work consists in writing <strong>code</strong>, which <em>usually</em> translates into beautiful web pages:</p>
-<% code "css" do %>
+    <p>My name is <strong itemprop="name">Sergio Agosti</strong> and I'm an <strong>Open-source Web Developer</strong> based in <strong itemprop="workLocation">London, UK</strong>. My work consists of writing <strong>code</strong>, which <em>usually</em> translates into beautiful <strong>web-sites</strong>.</p>
+<% code "scss" do %>
 .some-obscure-code {
     color: #004080; /* I like blue... */
     font-size: 2em; /* More readable! */
 }
 <% end %>
     <p>I'm currently employed as a <span itemprop="jobTitle">Senior Web Developer</span> at <strong itemprop="worksFor" itemscope itemtype="http://schema.org/Organization"><a href="http://theframeworks.com" itemprop="url">The&nbsp;Frameworks</a></strong>, focussing on <strong>front-end <a href="http://alistapart.com/article/responsive-web-design/">responsive web design</a></strong>.</p>
-    <p>In my free time I practice <strong>karate</strong>, which I have been doing since 1998. It is integral part of my life and it helps me to keep fit, both physically and mentally.</p>
+    <p>In my free time I practice <strong>karate</strong>, which I have been doing since 1998. It is integral part of my life and it helps me to keep fit, both physically and mentally. It has also taught me the values in which I believe: <strong>humbleness</strong>, <strong>respect</strong> and constant research of <strong>quality</strong> and <strong>perfection</strong>.</p>
 </main>
 
 <aside role="complementary">
@@ -20,12 +20,11 @@
     <% data.projects.first(2).each do |project| %>
         <li>
             <article>
-                <h1>
-                    <%= link_to "#{project.name} - #{project.published}", "/projects/#{project.slug}.html" %>
-                </h1>
+                <time datetime="<%= project.published %>"><%= project.published.strftime("%d/%m/%Y") %></time>
+                <h1><%= link_to project.name, "/projects/#{project.slug}.html" %></h1>
                 <p>
                     <% link_to "/projects/#{project.slug}.html" do %>
-                        <%= tag :img, :src => lorem.image("800x450") %>
+                        <%= image_tag "projects/#{project.slug}/#{project.images.thumb.src}", :alt => project.images.thumb.alt %>
                     <% end %>
                 </p>
             </article>

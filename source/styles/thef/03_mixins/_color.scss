@@ -1,0 +1,18 @@
+//**
+//* Set foreground/background colour of a container.
+//*/
+@mixin thef-color($foreground, $background: null, $links: $foreground) {
+    & {
+        color: $foreground;
+    }
+    @if $background != null {
+        & {
+            background-color: $background;
+        }
+    }
+    @if $links {
+        &:link, &:visited, :link, :visited {
+            color: $links;
+        }
+    }
+}

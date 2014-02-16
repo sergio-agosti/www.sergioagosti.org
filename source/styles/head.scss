@@ -2,12 +2,14 @@
 
 @import "compass";
 @import "bourbon";
-@import "include/**/*";
 
-@import "base/*";
-//@import "state/*";
-@import "layout/*";
-@import "module/*";
+@import "libs/**/*";
+@import "thef/**/*";
+@import "base/**/*";
+
+//@import "state/**/*";
+@import "layout/**/*";
+@import "module/**/*";
 
 @import "hooks"
 

@@ -1,5 +1,5 @@
 //**
-//* Uses the default $base-space value with the given property(es)
+//* Applies the default $base-space value to the given property(es).
 //*/
 @mixin thef-space($properties, $multiplier: 1, $em-value: false) {
     $value: $base-space * $multiplier;

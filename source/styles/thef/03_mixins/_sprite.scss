@@ -1,0 +1,34 @@
+//**
+//* Creates a sprite element.
+//*/
+@mixin thef-sprite($dimensions: 0 0, $coords: 0 0, $url: false, $type: "svg") {
+    border: 0;
+    padding: 0;
+    border-radius: 0;
+    
+    background: {
+        repeat: no-repeat;
+        color: transparent;
+        image: url($url + ".png");
+    };
+    @if ($type == "png@2") {
+        @include hidpi(2) {
+            background: {
+                image: url($url + "@2.png");
+                size: image-width($url + ".png") image-height($url + ".png");
+            }
+        }
+    }
+    @if ($type == "svg" or $type == "svgz") {
+        @include background-image(linear-gradient(transparent, transparent), url($url + "." + $type));
+    }
+    
+    @include hide-text;
+    
+    @if $dimensions {
+        @include size((nth($dimensions, 1) * 1px) (nth($dimensions, 2) * 1px));
+    }
+    @if $coords {
+        background-position: (-1 * nth($coords, 1) * 1px) (-1 * nth($coords, 2) * 1px);
+    }
+}

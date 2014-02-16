@@ -1,7 +1,0 @@
-//**
-//* Returns a set of background-image rules for svg backgrounds with fallback support
-//*/
-@mixin thef-svgbg($src, $fallback: 'png') {
-    background-image: url($src + '.' + $fallback); // fallback for browsers not supporting SVG
-    @include background-image(linear-gradient(transparent, transparent), url($url + '.svg'));
-}

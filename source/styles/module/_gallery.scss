@@ -1,0 +1,21 @@
+@mixin gallery {
+    @include thef-box;
+    @include thef-space(padding-top padding-right padding-left);
+    background-color: nth($footer-color, 2);
+    overflow: auto;
+}
+@mixin gallery__list {
+    @include display(flex);
+    @include flex-direction(row);
+/*     min-width: 2 * $page-maxwidth; */
+    
+    > * {
+/*         @include flex(1 0 auto); */
+    }
+    > * + * {
+        @include thef-space(margin-left);
+    }
+    img {
+/*         max-width: none !important; */
+    }
+}

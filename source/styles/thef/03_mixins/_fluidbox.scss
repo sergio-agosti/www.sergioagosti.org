@@ -4,9 +4,9 @@
 
 @import "ratio";
 
-@mixin thef-fluidbox($ratio-large-size, $ratio-small-size: 0 0, $content-selector: "> :first-child") {
+@mixin thef-fluidbox($ratio-large-size, $ratio-small-size: 0 0, $content-selector: "> *") {
 
-    // the second parameter is actually the content-selector
+    // the second parameter can actually be the $content-selector
     @if (length($ratio-small-size) == 1) {
         $content-selector: $ratio-small-size;
         $ratio-small-size: 0 0;
@@ -22,9 +22,10 @@
     & #{$content-selector} {
         top: 0;
         left: 0;
-        right: 0;
-        bottom: 0;
+        width: 100%;
+        height: 100%;
         overflow: hidden;
         position: absolute;
+        @include box-sizing(border-box);
     }
 }

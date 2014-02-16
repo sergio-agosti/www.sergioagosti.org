@@ -9,17 +9,15 @@
 //*      - by default, you'll have 1 to 12 columns grids
 //* - optional vertical gutter
 //*/
-//
-//
+
 @import "box", "center";
-//
-//
+
 // support browsers which don't (fully) support flexbox
 @mixin _grid-noflex {
-    @supports ( not ((-moz-flex-wrap: wrap) or (flex-wrap: wrap)) ) {
+    html.has-no-flexbox & {
         @content;
     }
-    html.has-no-flexbox & {
+    @supports ( not ((-moz-flex-wrap: wrap) or (flex-wrap: wrap)) ) {
         @content;
     }
 }
@@ -58,7 +56,7 @@
         @include thef-center;
     }
     // this column is centered when in a guttered grid
-    #{$_grid-ct}grid__#{$grid-breakpoint-size}--center {
+    #{$_grid-ct}grid__#{$grid-breakpoint-size}--center--gutter {
         @include thef-center;
         @include transform(translateX(-.5 * $grid-gutter));
     }
@@ -75,13 +73,11 @@
         clear: both;
     }
 }
-//
-//
+
 //* ========================================================================== */
 //* ========================================================================== */
 //* ========================================================================== */
-//
-//
+
 //**
 //* Defines a grid container.
 //*
@@ -90,14 +86,6 @@
 @mixin thef-grid($grid-options...) {
     @include display(flex);
     @include flex-wrap(wrap);
-    
-    @include _grid-noflex {
-        display: block;
-        @include thef-box(both);
-        > * {
-            float: left;
-        }
-    }
     
     @if length($grid-options) > 0 {
         @each $option in $grid-options {
@@ -112,18 +100,44 @@
         
         }
     }
+    
+    /* keep this block here at the end otherwise IE8 is not happy :| */
+    @include _grid-noflex {
+        display: block;
+        @include thef-box(both);
+        > * {
+            float: left;
+        }
+    }
 }
 //**
 //* Defines a grid column.
 //*
 //* @param $grid-column the column definition in the form A B,
-//*                     where A is the width of the column and B is the number of columns
+//*                     where A is the width of the column and B is the number of columns;
+//*                     if in a different form, it is assumed the passed value are $grid-options
 //*      e.g. 1 3 for a 1/3 (one third) column
 //* @param $grid-options optional options for the column
 //*      e.g. newrow, skip 1 5, pull 2 3, center, hidden
 //*/
 @mixin thef-grid__column($grid-column, $grid-options...) {
-    width: percentage(nth($grid-column, 1) / nth($grid-column, 2));
+    /* if the first parameter is in the form <number> <number> e.g. 1 3 ... */
+    @if length($grid-column) == 2
+        and
+        type_of(nth($grid-column, 1)) == number
+        and
+        unitless(nth($grid-column, 1))
+        and
+        type_of(nth($grid-column, 2)) == number
+        and
+        unitless(nth($grid-column, 2))
+    {
+        width: percentage(nth($grid-column, 1) / nth($grid-column, 2));
+    }
+    /* else it is assumed the first parameters are actually options */
+    @else {
+        $grid-options: $grid-column;
+    }
     
     @each $option in $grid-options {
         @if length($option) == 3 {
@@ -139,9 +153,9 @@
             }
             @if nth($option, 1) == push {
                 left: percentage(nth($option, 2) / nth($option, 3));
-            }
-            
-        } @else {
+            }    
+        }
+        @else {
             
             @if $option == center {
                 @include thef-center;
