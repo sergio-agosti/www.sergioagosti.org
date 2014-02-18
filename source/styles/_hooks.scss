@@ -68,6 +68,9 @@ body {
 }
 [role="main"] {
     @include page__content--column(main);
+    &.curriculum {
+        @include page__content--column(extended);
+    }
 }
 [role="complementary"] {
     @include page__content--column(aside);

@@ -57,6 +57,11 @@
             width: 40%;
             max-width: $page-maxwidth / 100 * 40;
         }
+        @if $content == "extended" {
+            @include flex(1 80%);
+            width: 80%;
+            max-width: $page-maxwidth / 100 * 80;
+        }
         
         @include _page--has-no-flexbox {
             margin: { left: auto; right: auto; }
