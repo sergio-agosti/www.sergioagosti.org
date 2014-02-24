@@ -1,20 +1,200 @@
 //**
-//* Reset default browsers's styles such as margins/padding in ul/ol/blockquote elements. 
+//* Reset default browser's styles (user agent). 
 //*/
-:link%_reset {
-    text-decoration: none;
-}
-ul%_reset,
-ol%_reset {
-    padding-left: 0;
-    list-style-type: none;
-}
-dd%_reset {
-    margin-left: 0;
-}
-blockquote%_reset {
-    margin: {
-        left: 0;
-        right: 0;
+
+$reset-global: false !default;
+$rc: unquote("%thef-reset");
+
+@if $reset-global {
+
+    #{$rc} {
+        margin: 0;
+        padding: 0;
+        border: none;
+        border-radius: 0;
+        text-align: left;
+        border-spacing: 0;
+        font-size: inherit;
+        font-style: normal;
+        font-weight: normal;
+        list-style-type: none;
+        text-decoration: none;
+        vertical-align: baseline;
+        background-color: transparent;
+        
+        &:hover {
+            cursor: text;
+        }
+        &:after,
+        &:before {
+            content: none;
+        }
+        &:link,
+        &:visited {
+            color: inherit;
+        }
+        
+        @include appearance(none);
     }
+
+}
+@else {
+
+    body#{$rc},
+    input#{$rc},
+    button#{$rc},
+    select#{$rc},
+    keygen#{$rc},
+    textarea#{$rc} {
+        margin: 0;
+    }
+    hr#{$rc} {
+        border-top-style: none;
+    }
+    figure#{$rc},
+    blockquote#{$rc} {
+        margin: {
+            left: 0;
+            right: 0;
+        }
+    }
+    p#{$rc},
+    h1#{$rc},
+    h2#{$rc},
+    h3#{$rc},
+    h4#{$rc},
+    h5#{$rc},
+    h6#{$rc},
+    hr#{$rc},
+    ol#{$rc},
+    ul#{$rc},
+    dl#{$rc},
+    pre#{$rc},
+    menu#{$rc},
+    figure#{$rc},
+    blockquote#{$rc} {
+        margin: {
+            top: 0;
+            bottom: 0;
+        }
+    }
+    legend#{$rc} {
+        padding: {
+            left: 0;
+            right: 0;
+        }
+    }
+    dd#{$rc} {
+        margin-left: 0;
+    }
+    ul#{$rc},
+    ol#{$rc},
+    menu#{$rc} {
+        padding-left: 0;
+    }
+    ul#{$rc},
+    ol#{$rc} {
+        list-style-type: none;
+    }
+    #{$rc}:link:hover {
+        cursor: text;
+    }
+    i#{$rc},
+    em#{$rc},
+    dfn#{$rc},
+    var#{$rc},
+    cite#{$rc},
+    address#{$rc} {
+        font-style: normal;
+    }
+    b#{$rc},
+    th#{$rc},
+    h1#{$rc},
+    h2#{$rc},
+    h3#{$rc},
+    h4#{$rc},
+    h5#{$rc},
+    h6#{$rc},
+    strong#{$rc} {
+        font-weight: normal;
+    }
+    table#{$rc} {
+        border-spacing: 0;
+    }
+    th#{$rc},
+    td#{$rc},
+    input#{$rc},
+    button#{$rc},
+    select#{$rc},
+    keygen#{$rc},
+    textarea#{$rc},
+    fieldset#{$rc} {
+        padding: 0;
+    }
+    th#{$rc},
+    caption#{$rc} {
+        text-align: left;
+    }
+    sup#{$rc},
+    sub#{$rc},
+    big#{$rc},
+    small#{$rc} {
+        font-size: inherit;
+    }
+    sup#{$rc},
+    sub#{$rc} {
+        vertical-align: baseline;
+    }
+    s#{$rc},
+    u#{$rc},
+    del#{$rc},
+    ins#{$rc},
+    #{$rc}:link,
+    strike#{$rc} {
+        text-decoration: none;
+    }
+    q#{$rc} {
+        &:before,
+        &:after {
+            content: none;
+        }
+    }
+    mark#{$rc},
+    #{$rc}:link,
+    #{$rc}:visited {
+        color: inherit;
+    }
+    input#{$rc},
+    button#{$rc},
+    select#{$rc},
+    keygen#{$rc},
+    textarea#{$rc},
+    fieldset#{$rc} {
+        border: none;
+    }
+    input#{$rc},
+    meter#{$rc},
+    keygen#{$rc},
+    button#{$rc},
+    select#{$rc},
+    progress#{$rc},
+    textarea#{$rc} {
+        @include appearance(none);
+    }
+    input#{$rc},
+    button#{$rc},
+    select#{$rc},
+    keygen#{$rc},
+    textarea#{$rc} {
+        border-radius: 0;
+    }
+    mark#{$rc},
+    input#{$rc},
+    button#{$rc},
+    select#{$rc},
+    keygen#{$rc},
+    textarea#{$rc} {
+        background-color: transparent;
+    }
+
 }

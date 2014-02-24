@@ -1,21 +1,59 @@
 @mixin gallery {
-    @include thef-box;
-    @include thef-space(padding-top padding-right padding-left);
-    background-color: nth($footer-color, 2);
-    overflow: auto;
+    
+//    @extend %thef-space;
+//    @include thef-box;
+//    @include thef-space(padding-top padding-right padding-left);
+//    @include thef-space(margin-left margin-right, -1);
+//    background-color: nth($footer-color, 2);
+
+    @include page__content;
+    @include page__content--extended;
+    
+    @media (min-width: em(900)) {
+        @include thef-space(margin-top, 2);
+    }
 }
 @mixin gallery__list {
-    @include display(flex);
-    @include flex-direction(row);
-/*     min-width: 2 * $page-maxwidth; */
+
+    > * > p {
+        border: 1/3 * $base-space solid nth($header-color, 1);
+    }
+
+    > :first-child {
+        max-width: 320px;
     
-    > * {
-/*         @include flex(1 0 auto); */
+        > p {        
+            @include thef-ratio(320 568);
+        }
+        & + * {
+            > p {
+                @include thef-ratio(1024 768);
+            }
+        }
     }
-    > * + * {
-        @include thef-space(margin-left);
+
+    @media (min-width: em(600)) {
+    
+        @include thef-grid(gutter);
+        
+        > :first-child {
+            @include thef-grid__column(1 3);
+            & + * {
+                @include thef-grid__column(2 3);
+            }
+        }
     }
-    img {
-/*         max-width: none !important; */
+    @media (min-width: em(900)) {
+        > :first-child {
+            @include thef-grid__column(1 6);
+            
+            & + * {
+                @include thef-grid__column(2 6);
+            
+                & + * {
+                    @include thef-grid__column(3 6);
+                }
+            }
+        }
     }
 }

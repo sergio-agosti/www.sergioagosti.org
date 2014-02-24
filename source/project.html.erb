@@ -2,21 +2,29 @@
 
 <%= partial "layouts/header", :locals => { :title => project.name } %>
 
-<main role="main">
-    <%= partial "content/projects/#{project.slug}/description" %>
-    <p><%= lorem.paragraph %></p>
-</main>
-<aside role="complementary">
-    <p>tags, etc...</p>
-</aside>
+<div class="page__body">
 
-<div class="gallery">
-    <ul>
-        <li><%= image_tag "projects/#{project.slug}/#{project.images.small.src}", :alt => project.images.small.alt %></li>
-        <li><%= image_tag "projects/#{project.slug}/#{project.images.medium.src}", :alt => project.images.medium.alt %></li>
-        <li><%= image_tag "projects/#{project.slug}/#{project.images.large.src}", :alt => project.images.large.alt %></li>
-        <li><%= image_tag "projects/#{project.slug}/#{project.images.extra.src}", :alt => project.images.extra.alt %></li>
-    </ul>
+    <div class="page__content--row">
+
+        <main role="main">
+            <%= partial "content/projects/#{project.slug}/description" %>
+            <p><%= lorem.paragraph %></p>
+        </main>
+        
+        <aside role="complementary">
+            <p>tags, etc...</p>
+        </aside>
+    
+    </div>
+    
+    <div class="gallery">
+        <ul>
+            <li><p><%= image_tag "projects/#{project.slug}/#{project.images.small.src}", :alt => project.images.small.alt %></p></li>
+            <li><p><%= image_tag "projects/#{project.slug}/#{project.images.large.src}", :alt => project.images.large.alt %></p></li>
+            <li><p><%= image_tag "projects/#{project.slug}/#{project.images.extra.src}", :alt => project.images.extra.alt %></p></li>
+        </ul>
+    </div>
+
 </div>
 
 <%= partial "layouts/footer", :locals => { :navigation => { :active => '/projects.html' } } %>

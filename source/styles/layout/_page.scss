@@ -4,31 +4,28 @@
     }
 }
 @mixin _page--has-no-flexbox {
-    @supports ( not ((-moz-flex-wrap: wrap) or (flex-wrap: wrap)) ) {
-        @content;
-    }
     html.has-no-flexbox & {
         @content;
     }
 }
 
 @mixin page {
-    @include _is-page-wide {
-        @include display(flex);
-        @include flex-wrap(wrap);
-        @include justify-content(center);
     
-        > * {
-            @include flex(1 100%);
-            width: 100%;
-        }
-        
-        @include _page--has-no-flexbox {
-            @include display(block);
-        }
+    @include display(flex);
+    @include flex-direction(column);
+    
+    min-height: 100vh;
+    
+    @include _page--has-no-flexbox {
+        @include display(block);
     }
 }
+@mixin page__body($content: null) {
+
+    @include flex(1);
+}
 @mixin page__content {
+
     @include thef-space(padding-left padding-right);
     @include box-sizing(border-box);
     
@@ -43,30 +40,33 @@
         max-width: $page-maxwidth / 100 * 60;
     }
 }
+@mixin page__content--row($content: null) {
+
+    @include _is-page-wide {
+    
+        @include thef-grid;
+    }
+}
 @mixin page__content--column($content: null) {
     @include _is-page-wide {
-        margin: { left: 0; right: 0; }
+    
+        @include thef-grid__column(1 1);
         
         @if $content == "main" {
-            @include flex(1 60%);
-            width: 60%;
-            max-width: $page-maxwidth / 100 * 60;
+            @include thef-grid__column(3 5);
         }
         @if $content == "aside" {
-            @include flex(1 40%);
-            width: 40%;
-            max-width: $page-maxwidth / 100 * 40;
+            @include thef-grid__column(2 5);
+            @include box-sizing(border-box);
+            @include thef-space(padding-left, 2);
         }
         @if $content == "extended" {
-            @include flex(1 80%);
-            width: 80%;
-            max-width: $page-maxwidth / 100 * 80;
+            @include thef-grid__column(4 5);
         }
-        
-        @include _page--has-no-flexbox {
-            margin: { left: auto; right: auto; }
-            width: 100%;
-            max-width: $page-maxwidth / 100 * 60;
-        }
+    }
+}
+@mixin page__content--extended {
+    @include _is-page-wide {
+        max-width: $page-maxwidth / 100 * 150;
     }
 }

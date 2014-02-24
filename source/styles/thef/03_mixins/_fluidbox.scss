@@ -4,7 +4,7 @@
 
 @import "ratio";
 
-@mixin thef-fluidbox($ratio-large-size, $ratio-small-size: 0 0, $content-selector: "> *") {
+@mixin thef-fluidbox($ratio-large-size, $ratio-small-size: 0 0, $content-selector: '> *') {
 
     // the second parameter can actually be the $content-selector
     @if (length($ratio-small-size) == 1) {

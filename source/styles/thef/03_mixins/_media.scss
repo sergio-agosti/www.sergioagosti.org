@@ -1,10 +1,10 @@
 $media-breakpoints: (
     's'    '(max-width: 500px)',                        /* small devices only       */
     'm'    '(min-width: 501px) and (max-width: 850px)', /* medium devices only      */
-    'm-up' '(min-width: 501px)',                        /* medium devices and up    */
+    'm-up' '(min-width: 501px)',                        /* medium devices and above */
     'm-to' '(max-width: 850px)',                        /* medium devices and below */
     'l'    '(min-width: 851px) and (max-width: 1300px)',/* large devices only       */
-    'l-up' '(min-width: 851px)',                        /* large devices and up     */
+    'l-up' '(min-width: 851px)',                        /* large devices and above  */
     'l-to' '(max-width: 1300px)',                       /* large devices and below  */
     'x'    '(min-width: 1301px)'                        /* extra-large devices only */
 ) !default;
@@ -56,15 +56,15 @@ $media-breakpoints: (
 //* Generates classes for all the defined breakpoints.
 //* You can optionally avoid generating the global one.
 //*/
-@mixin thef-media-generate($selector, $generate-global: true) {
+@mixin thef-media-generate($selector-prefix, $generate-global: true) {
     @if ($generate-global) {
-        #{$selector} {
+        #{$selector-prefix} {
             @content;
         }
     }
     @each $media-breakpoint in $media-breakpoints {
         @media #{nth($media-breakpoint, 2)} {
-            #{$selector}--#{nth($media-breakpoint, 1)} {
+            #{$selector-prefix}--#{nth($media-breakpoint, 1)} {
                 @content;
             }
         }

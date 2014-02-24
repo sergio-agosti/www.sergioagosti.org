@@ -2,22 +2,30 @@
 
 <%= partial "layouts/header", :locals => { :title => "Projects" } %>
 
-<main role="main">
-    <ol>
-	<% data.projects.each do |project| %>
-		<li>
-    		<article>
-                <time datetime="<%= project.published %>"><%= project.published.strftime("%d/%m/%Y") %></time>
-                <h1><%= link_to project.name, "/projects/#{project.slug}.html" %></h1>
-                <p>
-                    <% link_to "/projects/#{project.slug}.html" do %>
-                        <%= image_tag "projects/#{project.slug}/#{project.images.thumb.src}", :alt => project.images.thumb.alt %>
-                    <% end %>
-                </p>
-            </article>
-		</li>
-    <% end %>
-	</ol>
-</main>
+<div class="page__body">
+
+    <div class="page__content--row">
+
+        <main role="main">
+            <ol>
+        	<% data.projects.each do |project| %>
+        		<li>
+            		<article>
+                        <time datetime="<%= project.published %>"><%= project.published.strftime("%d/%m/%Y") %></time>
+                        <h1><%= link_to project.name, "/projects/#{project.slug}.html" %></h1>
+                        <p>
+                            <% link_to "/projects/#{project.slug}.html" do %>
+                                <%= image_tag "projects/#{project.slug}/#{project.images.thumb.src}", :alt => project.images.thumb.alt %>
+                            <% end %>
+                        </p>
+                    </article>
+        		</li>
+            <% end %>
+        	</ol>
+        </main>
+    
+    </div>
+
+</div>
 
 <%= partial "layouts/footer", :locals => { :navigation => { :active => '/projects.html' } } %>

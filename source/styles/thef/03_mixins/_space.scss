@@ -1,7 +1,7 @@
 //**
 //* Applies the default $base-space value to the given property(es).
 //*/
-@mixin thef-space($properties, $multiplier: 1, $em-value: false) {
+@mixin thef-space($properties: margin-bottom, $multiplier: 1, $em-value: false) {
     $value: $base-space * $multiplier;
     
     @if $em-value != false {

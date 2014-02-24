@@ -1,7 +1,7 @@
 <footer role="contentinfo" id="navigation">
     <nav role="navigation">
         <ul>
-        <% { '/' => 'home', '/projects.html' => 'projects', '/curriculum-vitae.html' => 'curriculum vitae'}.each do |path, link| %>
+        <% { '/' => 'Home', '/projects.html' => 'Projects', '/resume.html' => 'Résumé'}.each do |path, link| %>
             <li>
                 <%= (navigation[:active] == path) ? '<b>' + link_to(link, path) + '</b>' : link_to(link, path) %>
             </li>

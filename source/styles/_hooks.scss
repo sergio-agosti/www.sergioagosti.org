@@ -33,7 +33,7 @@ img {
 [role="complementary"] {
     > ul,
     > ol {
-        @extend %_reset;
+        @extend %thef-reset, %thef-space;
     }
 }
 
@@ -50,7 +50,7 @@ img {
     @include gallery;
     
     ul {
-        @extend %_reset;
+        @extend %thef-reset;
         @include gallery__list;
     }
 }
@@ -60,10 +60,15 @@ img {
 body {
     @include page;
 }
-[role="main"],
+.page__body {
+    @include page__body;
+}
+.page__content--row {
+    @include page__content--row;
+}
+.page__content--row,
 [role="banner"] > *,
-[role="navigation"],
-[role="complementary"] {
+[role="contentinfo"] > * {
     @include page__content;
 }
 [role="main"] {
