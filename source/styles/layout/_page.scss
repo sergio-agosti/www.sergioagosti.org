@@ -44,7 +44,7 @@
 
     @include _is-page-wide {
     
-        @include thef-grid;
+        @include thef-grid(center);
     }
 }
 @mixin page__content--column($content: null) {

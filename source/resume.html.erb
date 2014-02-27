@@ -292,7 +292,7 @@
         	</dl>
         	<dl>
         		<dt>Dates</dt>
-        		<dd>2000 – June 2005</dd>
+        		<dd>January 2000 to June 2005</dd>
         		
         		<dt>Position held</dt>
         		<dd>Freelance Software Developer</dd>
@@ -303,7 +303,8 @@
         		<dt>Employed languages and technology</dt>
         		<dd>
         			<ul>
-        				<li>HTML, JavaScript, Macromedia Flash, PHP, MySQL</li>
+        				<li>HTML, JavaScript, PHP, MySQL</li>
+        				<li>Macromedia Flash</li>
         				<li>Mandrake GNU/Linux, Gentoo GNU/Linux, Windows XP</li>
         			</ul>
         		</dd>
@@ -392,4 +393,12 @@
 
 </div>
 
-<%= partial "layouts/footer", :locals => { :navigation => { :active => '/resume.html' } } %>
+<%= partial "layouts/footer",
+    :locals => {
+        :navigation => { :active => '/resume.html' },
+        :breadcrumb => [
+            { :text => "Sergio Agosti", :path => '/index.html' },
+            { :text => "Résumé" }
+        ]
+    }
+%>

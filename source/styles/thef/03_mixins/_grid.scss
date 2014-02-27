@@ -118,6 +118,9 @@ $grid-define-the-all-media: true !default;
                     @include box-sizing(border-box);
                 }
             }
+            @if $option == center {
+                @include justify-content(center);
+            }
         
         }
     }

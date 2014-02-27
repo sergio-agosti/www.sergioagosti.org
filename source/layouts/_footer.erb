@@ -1,11 +1,16 @@
-<footer role="contentinfo" id="navigation">
-    <nav role="navigation">
-        <ul>
-        <% { '/' => 'Home', '/projects.html' => 'Projects', '/resume.html' => 'Résumé'}.each do |path, link| %>
-            <li>
-                <%= (navigation[:active] == path) ? '<b>' + link_to(link, path) + '</b>' : link_to(link, path) %>
-            </li>
-        <% end %>
-        </ul>
-    </nav>
-</footer>
+<div id="navigation">
+<% if defined?(breadcrumb) %>
+    <%= partial "layouts/breadcrumb", :locals => { :breadcrumb => breadcrumb } %>
+<% end %>
+    <footer role="contentinfo">
+        <nav role="navigation">
+            <ul>
+            <% { '/index.html' => 'Home', '/projects.html' => 'Projects', '/resume.html' => 'Résumé'}.each do |path, text| %>
+                <li>
+                    <%= (navigation[:active] == path) ? '<b>' + link_to(text, path) + '</b>' : link_to(text, path) %>
+                </li>
+            <% end %>
+            </ul>
+        </nav>
+    </footer>
+</div>

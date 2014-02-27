@@ -1,0 +1,7 @@
+<div class="breadcrumb">
+    <ul class="breadcrumb__tree">
+    <% breadcrumb.each do |breadcrumb__item| %>
+        <li><%= breadcrumb__item[:path] ? link_to(breadcrumb__item[:text], breadcrumb__item[:path]) : breadcrumb__item[:text] %></li>
+    <% end %>
+    </ul>
+</div>

@@ -1,0 +1,40 @@
+.breadcrumb {
+    @extend %thef-space;
+    @include thef-box;
+    @include thef-space(padding-top);
+    @include page__content;
+    
+    background-color: nth($header-color, 2);
+    font-size: smaller;
+}
+.breadcrumb__tree,
+.breadcrumb__list {
+    @extend %thef-reset, %thef-space;
+    
+    @media (min-width: em(600)) {
+        > * {
+            display: inline-block;
+            
+            & + :before {
+                content: "/ ";
+            }
+        }
+    }
+}
+.breadcrumb__tree {
+    > * + * {
+        margin-left: 1em;
+        & + * {
+            margin-left: 2em;
+            & + * {
+                margin-left: 3em;
+            }
+        }
+    }
+    
+    @media (min-width: em(600)) {
+        > * {
+            margin-left: 0;
+        }
+    }
+}

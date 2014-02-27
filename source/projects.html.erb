@@ -3,6 +3,15 @@
 <%= partial "layouts/header", :locals => { :title => "Projects" } %>
 
 <div class="page__body">
+    
+    <%= partial "layouts/breadcrumb",
+        :locals => {
+            :breadcrumb => [
+                { :text => "Sergio Agosti", :path => '/index.html' },
+                { :text => "Projects" }
+            ]
+        }
+    %>
 
     <div class="page__content--row">
 

@@ -19,13 +19,16 @@
         display: block;
         @include thef-ratio($ratio-large-size, $ratio-small-size);
     }
-    & #{$content-selector} {
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        overflow: hidden;
-        position: absolute;
-        @include box-sizing(border-box);
+    
+    @if $content-selector {
+        & #{$content-selector} {
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            position: absolute;
+            @include box-sizing(border-box);
+        }
     }
 }

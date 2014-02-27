@@ -2,7 +2,7 @@
 //* Reset default browser's styles (user agent). 
 //*/
 
-$reset-global: false !default;
+$reset-global: true !default;
 $rc: unquote("%thef-reset");
 
 @if $reset-global {

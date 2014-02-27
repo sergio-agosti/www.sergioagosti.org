@@ -18,12 +18,39 @@
     </div>
     
     <div class="gallery">
-        <ul>
-            <li><p><%= image_tag "projects/#{project.slug}/#{project.images.small.src}", :alt => project.images.small.alt %></p></li>
-            <li><p><%= image_tag "projects/#{project.slug}/#{project.images.large.src}", :alt => project.images.large.alt %></p></li>
-            <li><p><%= image_tag "projects/#{project.slug}/#{project.images.extra.src}", :alt => project.images.extra.alt %></p></li>
+        <ul class="gallery__list">
+            <li>
+                <figure>
+                    <figcaption class="gallery__caption"><p>small screen</p></figcaption>
+                    <p class="gallery__image gallery__image--small"><%= image_tag "projects/#{project.slug}/#{project.images.small.src}", :alt => project.images.small.alt %></p>
+                </figure>
+            </li>
+            <li>
+                <figure>
+                    <figcaption class="gallery__caption"><p>large screen</p></figcaption>
+                    <p class="gallery__image gallery__image--large"><%= image_tag "projects/#{project.slug}/#{project.images.large.src}", :alt => project.images.large.alt %></p>
+                </figure>
+            </li>
+            <li>
+                <figure>
+                    <figcaption class="gallery__caption"><p>extra-large screen</p></figcaption>
+                    <p class="gallery__image gallery__image--extra"><%= image_tag "projects/#{project.slug}/#{project.images.extra.src}", :alt => project.images.extra.alt %></p>
+                </figure>
+            </li>
         </ul>
     </div>
+    
+    <p class="page__content">Next project: <a href="#">Another awesome project!</a></p>
+
+    <%= partial "layouts/breadcrumb",
+        :locals => {
+            :breadcrumb => [
+                { :text => "Sergio Agosti", :path => '/index.html' },
+                { :text => "Projects", :path => '/projects.html' },
+                { :text => project.name }
+            ]
+        }
+    %>
 
 </div>
 

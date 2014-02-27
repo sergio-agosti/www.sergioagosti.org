@@ -3,8 +3,7 @@
 		@include thef-space(padding-top, .5);
 	}
     dd {
-		@extend %_reset;
-		@include thef-space(padding-left margin-bottom);
+		@extend %thef-reset, %thef-space;
 	}
 	dt {
 		font-weight: bold;
@@ -14,10 +13,10 @@
 		line-height: 1.5;
 	}
 	dl + dl {
-    	border-top: 2px solid nth($header-color, 1);
     	@include thef-space(padding-top);
+    	border-top: 2px solid nth($header-color, 1);
 	}
-	ul {
+	dd, ul {
 	    @include thef-space(padding-left);
 	}
 
@@ -27,8 +26,8 @@
     		width: percentage(1/3);
     	}
     	dd {
-    		width: percentage(2/3);
     		@include box-sizing(border-box);
+    		width: percentage(2/3);
     	}
     	dl {
         	@include thef-box(both);

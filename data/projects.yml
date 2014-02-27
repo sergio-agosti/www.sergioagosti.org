@@ -17,3 +17,23 @@
     extra:
         src: CategoryEdge-TogetherCommerce-ToshibaGlobalCommerceSolutions(extra).jpg
         alt: 
+        
+- name: Another awesome project
+  slug: another-awesome-project
+  published: 2013-12-06
+  images:
+    thumb:
+        src: CategoryEdge-TogetherCommerce-ToshibaGlobalCommerceSolutions.jpg
+        alt: 
+    small:
+        src: CategoryEdge-TogetherCommerce-ToshibaGlobalCommerceSolutions(small).jpg
+        alt: 
+    medium:
+        src: CategoryEdge-TogetherCommerce-ToshibaGlobalCommerceSolutions(medium).jpg
+        alt: 
+    large:
+        src: CategoryEdge-TogetherCommerce-ToshibaGlobalCommerceSolutions(large).jpg
+        alt: 
+    extra:
+        src: CategoryEdge-TogetherCommerce-ToshibaGlobalCommerceSolutions(extra).jpg
+        alt: 
