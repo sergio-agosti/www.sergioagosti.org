@@ -7,21 +7,9 @@
     background-color: nth($header-color, 2);
     font-size: smaller;
 }
-.breadcrumb__tree,
-.breadcrumb__list {
+.breadcrumb__tree {
     @extend %thef-reset, %thef-space;
     
-    @media (min-width: em(600)) {
-        > * {
-            display: inline-block;
-            
-            & + :before {
-                content: "/ ";
-            }
-        }
-    }
-}
-.breadcrumb__tree {
     > * + * {
         margin-left: 1em;
         & + * {
@@ -35,6 +23,11 @@
     @media (min-width: em(600)) {
         > * {
             margin-left: 0;
+            display: inline-block;
+            
+            & + :before {
+                content: "/ ";
+            }
         }
     }
 }

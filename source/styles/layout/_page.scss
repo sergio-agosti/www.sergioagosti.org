@@ -60,9 +60,6 @@
             @include box-sizing(border-box);
             @include thef-space(padding-left, 2);
         }
-        @if $content == "extended" {
-            @include thef-grid__column(4 5);
-        }
     }
 }
 @mixin page__content--extended {

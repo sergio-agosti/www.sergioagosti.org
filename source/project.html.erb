@@ -42,16 +42,15 @@
     
     <p class="page__content">Next project: <a href="#">Another awesome project!</a></p>
 
-    <%= partial "layouts/breadcrumb",
-        :locals => {
-            :breadcrumb => [
-                { :text => "Sergio Agosti", :path => '/index.html' },
-                { :text => "Projects", :path => '/projects.html' },
-                { :text => project.name }
-            ]
-        }
-    %>
-
 </div>
 
-<%= partial "layouts/footer", :locals => { :navigation => { :active => '/projects.html' } } %>
+<%= partial "layouts/footer",
+    :locals => {
+        :navigation => { :active => '/projects.html' },
+        :breadcrumb => [
+            { :text => "Sergio Agosti", :path => '/index.html' },
+            { :text => "Projects", :path => '/projects.html' },
+            { :text => project.name }
+        ]
+    }
+%>

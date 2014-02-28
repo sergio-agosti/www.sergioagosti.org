@@ -3,15 +3,6 @@
 <%= partial "layouts/header", :locals => { :title => "Projects" } %>
 
 <div class="page__body">
-    
-    <%= partial "layouts/breadcrumb",
-        :locals => {
-            :breadcrumb => [
-                { :text => "Sergio Agosti", :path => '/index.html' },
-                { :text => "Projects" }
-            ]
-        }
-    %>
 
     <div class="page__content--row">
 
@@ -37,4 +28,12 @@
 
 </div>
 
-<%= partial "layouts/footer", :locals => { :navigation => { :active => '/projects.html' } } %>
+<%= partial "layouts/footer",
+    :locals => {
+        :navigation => { :active => '/projects.html' },
+        :breadcrumb => [
+            { :text => "Sergio Agosti", :path => '/index.html' },
+            { :text => "Projects" }
+        ]
+    }
+%>

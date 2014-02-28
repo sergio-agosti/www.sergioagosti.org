@@ -86,7 +86,9 @@ $grid-define-the-all-media: true !default;
     // this column is aligning to the right
     #{$_grid-ct}grid__#{$grid-breakpoint-size}--revdir {
         margin-left: auto;
-        /* FIXME support for non-flexbox browser */
+        @include _grid-noflex {
+            float: right;
+        }
     }
     // this is the first column of a row
     #{$_grid-ct}grid__#{$grid-breakpoint-size}--newrow {
