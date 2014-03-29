@@ -10,16 +10,11 @@ $base-space:       $base-line-height; // 2 3 4 6 8 12
  * custom options
  */
 
-$base-color: #191919;
-$base-background-color: #f3f3f3;
+$base-color--fg: #343434;
+$base-color--bg: #f3f3f3;
 
-$theme-color-1: #1d1916;
-$theme-color-2: #32463a;
-$theme-color-3: #f4bf75;
-$theme-color-4: #e4e8eb;
-$theme-color-5: #c83c2f;
+$altern-color: #f4bf75;
+$header-color: ($base-color--fg darken($base-color--bg, 5%));
+$footer-color: (darken($base-color--bg, 5%) $base-color--fg);
 
 $page-maxwidth: 1200px;
-$header-color: (darken(#e6e6e6, 70%) darken(#e6e6e6, 5%));
-$footer-color: (darken(#e6e6e6, 5%) darken(#e6e6e6, 70%));
-$menu-color: $theme-color-3;

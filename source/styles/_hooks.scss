@@ -1,5 +1,5 @@
 a[href="#navigation"] {
-    @include menuicon($menu-color, nth($header-color, 1), nth($header-color, 2));
+    @include menuicon($altern-color, nth($header-color, 1), nth($header-color, 2));
 }
 img {
     @include thef-fluidmedia;

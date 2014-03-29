@@ -17,7 +17,7 @@ body {
     font-size: percentage($base-font-size / 10px); /* [1] */
     line-height: em($base-line-height / 1px); /* [2] */
     text-rendering: optimizeLegibility; /* [3] */
-    background-color: $base-background-color;
+    background-color: $base-color--bg;
     
     @media (min-width: em(600)) {
         font-size: percentage(($base-font-size + 2) / 10px);
@@ -27,14 +27,14 @@ body {
  * Set the foreground colour.
  */
 body, :link, :visited {
-    color: $base-color;
+    color: $base-color--fg;
 }
 /*
  * Disable the dotted outline on anchors when active/focus.
  */
 a {
     text-decoration: none;
-    border-bottom: 2px solid lighten($base-color, 20%);
+    border-bottom: 2px solid lighten($base-color--fg, 20%);
     @include transition(border-bottom-color 400ms);
     
     &:focus,
@@ -44,7 +44,7 @@ a {
     &:hover,
     &:focus,
     &:active {
-        border-bottom-color: $theme-color-3;
+        border-bottom-color: $altern-color;
     }
 }
 /**

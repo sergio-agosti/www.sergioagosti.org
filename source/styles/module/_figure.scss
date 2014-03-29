@@ -1,0 +1,7 @@
+.figure {
+    @extend %thef-reset, %thef-space;
+}
+.figure__caption {
+    @include thef-space(padding-left);
+    @include thef-space(margin-top, -1/2);
+}
