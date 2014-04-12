@@ -1,54 +1,60 @@
-<% content_for :title, "#{project.name} web project - Sergio Agosti, Open-source Web Developer" %>
+<% project = data.projects[index] %>
+<% content_for :title, "Project: #{project.name} - Sergio Agosti" %>
 
-<%= partial "layouts/header", :locals => { :title => project.name } %>
+<%= partial "layouts/header", :locals => { :title => 'Project: ' + project.name } %>
 
-<div class="page__body">
+<main role="main" class="page__body">
 
-    <div class="page__content--row">
+    <div class="page__content page__content--row page__content--wide">
 
-        <main role="main">
-            <%= partial "content/projects/#{project.slug}/description" %>
-            <p><%= lorem.paragraph %></p>
-        </main>
+        <div class="page__content--column page__content--column--main">
+            <%= partial "content/projects/#{project.slug}/main" %>
+        </div>
         
-        <aside role="complementary">
-            <p>tags, etc...</p>
-        </aside>
+        <div class="page__content--column page__content--column--aside">
+            <%= partial "content/projects/#{project.slug}/aside" %>
+        </div>
     
     </div>
     
     <div class="gallery">
-        <ul class="gallery__list">
-            <li>
-                <figure>
-                    <figcaption class="gallery__caption"><p>small screen</p></figcaption>
-                    <p class="gallery__image gallery__image--small"><%= image_tag "projects/#{project.slug}/#{project.images.small.src}", :alt => project.images.small.alt %></p>
-                </figure>
-            </li>
-            <li>
-                <figure>
-                    <figcaption class="gallery__caption"><p>large screen</p></figcaption>
-                    <p class="gallery__image gallery__image--large"><%= image_tag "projects/#{project.slug}/#{project.images.large.src}", :alt => project.images.large.alt %></p>
-                </figure>
-            </li>
-            <li>
-                <figure>
-                    <figcaption class="gallery__caption"><p>extra-large screen</p></figcaption>
-                    <p class="gallery__image gallery__image--extra"><%= image_tag "projects/#{project.slug}/#{project.images.extra.src}", :alt => project.images.extra.alt %></p>
-                </figure>
-            </li>
-        </ul>
+    
+        <div class="page__content page__content--wider">
+            <ul class="gallery__list">
+                <li>
+                    <figure>
+                        <figcaption class="gallery__caption"><p>small screen</p></figcaption>
+                        <p><a href="#gallery__image--small" name="gallery__image--small" class="gallery__image gallery__image--small"><%= image_tag "projects/#{project.slug}/#{project.images.small.src}", :alt => project.images.small.alt %></a></p>
+                    </figure>
+                </li>
+                <li>
+                    <figure>
+                        <figcaption class="gallery__caption"><p>large screen</p></figcaption>
+                        <p><a href="#gallery__image--large" name="gallery__image--large" class="gallery__image gallery__image--large"><%= image_tag "projects/#{project.slug}/#{project.images.large.src}", :alt => project.images.large.alt %></a></p>
+                    </figure>
+                </li>
+                <li>
+                    <figure>
+                        <figcaption class="gallery__caption"><p>extra-large screen</p></figcaption>
+                        <p><a href="#gallery__image--extra" name="gallery__image--extra" class="gallery__image gallery__image--extra"><%= image_tag "projects/#{project.slug}/#{project.images.extra.src}", :alt => project.images.extra.alt %></a></p>
+                    </figure>
+                </li>
+            </ul>
+        </div>
+        
     </div>
     
-    <p class="page__content">Next project: <a href="#">Another awesome project!</a></p>
+<% if index + 1 < data.projects.length %>
+    <p class="page__content page__content--wide">Next project (<%= index + 2 %> of <%= data.projects.length %>): <%= link_to data.projects[index + 1].name, "/projects/#{data.projects[index + 1].slug}.html" %></p>
+<% end %>
 
-</div>
+</main>
 
 <%= partial "layouts/footer",
     :locals => {
         :navigation => { :active => '/projects.html' },
         :breadcrumb => [
-            { :text => "Sergio Agosti", :path => '/index.html' },
+            { :text => "Sergio", :path => '/index.html' },
             { :text => "Projects", :path => '/projects.html' },
             { :text => project.name }
         ]

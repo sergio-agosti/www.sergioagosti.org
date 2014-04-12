@@ -20,9 +20,9 @@
         <script>try{Typekit.load();}catch(e){}</script>
         <%# javascript_include_tag "head", :type => false %>
     </head>
-    <body>
+    <body class="page">
         <%= yield %>
         
-        <%# javascript_include_tag "foot", :type => false %>
+        <%= javascript_include_tag "//code.jquery.com/jquery-1.11.0.min.js", "foot", :type => false %>
     </body>
 </html>

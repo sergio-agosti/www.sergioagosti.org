@@ -1,10 +1,10 @@
-<% content_for(:title, "Résumé - Sergio Agosti, Open-source Web Developer") %>
+<% content_for(:title, "Résumé - Sergio Agosti") %>
 
 <%= partial "layouts/header", :locals => { :title => "Résumé" } %>
 
 <div class="page__body">
 
-    <div class="page__content--row">
+    <div class="page__content page__content--wide">
 
         <main role="main" class="curriculum">
             
@@ -268,11 +268,10 @@
         		<dt>Main activities and responsibilities</dt>
         		<dd>
         			<ul>
-        				<li>Operator/secretary</li>
+        				<li>Receptionist and secretary</li>
         				<li>Cook (for about 50 people per day - fixed menu)</li>
-        				<li>In charge of food ordering and storage</li>
-        				<li>In charge of cleaning and maintaining a professional kitchen</li>
-        				<li>Store man</li>
+        				<li>Responsible for food ordering and storage</li>
+        				<li>Responsible for cleaning and maintaining a professional kitchen</li>
         				<li>Waiter</li>
         				<li>Driver</li>
         			</ul>
@@ -383,8 +382,10 @@
         		<dt>Other skills and competences</dt>
         		<dd>Black belt in karate</dd>
         	
+<!--
         		<dt>Driving license</dt>
         		<dd>B category, no vehicle</dd>
+-->
         	</dl>
         
         </main>
@@ -397,7 +398,7 @@
     :locals => {
         :navigation => { :active => '/resume.html' },
         :breadcrumb => [
-            { :text => "Sergio Agosti", :path => '/index.html' },
+            { :text => "Sergio", :path => '/index.html' },
             { :text => "Résumé" }
         ]
     }

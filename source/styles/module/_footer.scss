@@ -10,6 +10,6 @@
     background-color: nth($footer-color, 2);
     
     @media (min-width: em(900)) {
-        @include thef-space(margin-top padding-bottom, 2);
+        @include thef-space(padding-bottom, 2);
     }
 }

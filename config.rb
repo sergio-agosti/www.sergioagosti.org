@@ -27,8 +27,8 @@ Sass::Script::Number.precision = 14
 # end
 
 # Proxy pages (http://middlemanapp.com/dynamic-pages/)
-data.projects.each do |project|
-    proxy "/projects/#{project.slug}.html", "/project.html", :locals => { :project => project }
+data.projects.each_with_index do |project, index|
+    proxy "/projects/#{project.slug}.html", "/project.html", :locals => { :index => index }, :ignore => true
 end
 
 ###
@@ -70,7 +70,7 @@ configure :build do
   activate :minify_javascript
 
   # Enable cache buster
-  # activate :asset_hash
+  activate :asset_hash
 
   # Use relative URLs
   activate :relative_assets

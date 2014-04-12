@@ -23,6 +23,10 @@
 @mixin page__body($content: null) {
 
     @include flex(1);
+    
+    @media (min-width: em(900)) {
+        @include thef-space(margin-bottom, 2);
+    }
 }
 @mixin page__content {
 
@@ -32,15 +36,21 @@
     margin: { left: auto; right: auto; }
     max-width: $page-maxwidth / 100 * 60;
     
-    @include _is-page-wide {
-        max-width: $page-maxwidth;
-    }
-    
     @include _page--has-no-flexbox {
         max-width: $page-maxwidth / 100 * 60;
     }
 }
-@mixin page__content--row($content: null) {
+@mixin page__content--wide {
+    @include _is-page-wide {
+        max-width: $page-maxwidth;
+    }
+}
+@mixin page__content--wider {
+    @include _is-page-wide {
+        max-width: $page-maxwidth / 100 * 150;
+    }
+}
+@mixin page__content--row {
 
     @include _is-page-wide {
     
@@ -60,10 +70,5 @@
             @include box-sizing(border-box);
             @include thef-space(padding-left, 2);
         }
-    }
-}
-@mixin page__content--extended {
-    @include _is-page-wide {
-        max-width: $page-maxwidth / 100 * 150;
     }
 }

@@ -1,8 +1,7 @@
 .breadcrumb {
     @extend %thef-space;
     @include thef-box;
-    @include thef-space(padding-top);
-    @include page__content;
+    @include thef-space(padding-top padding-left padding-right);
     
     background-color: nth($header-color, 2);
     font-size: smaller;

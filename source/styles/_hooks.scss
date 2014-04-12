@@ -1,33 +1,15 @@
-a[href="#navigation"] {
-    @include menuicon($altern-color, nth($header-color, 1), nth($header-color, 2));
-}
 img {
     @include thef-fluidmedia;
 }
-
-
-
-[role="banner"] {
-    @include header;
-    > p {
-        @include header__menu;
-    }
-    > h1 {
-        @include header__title;
-    }
+a[href="#navigation"] {
+    @include menuicon($altern-color, nth($header-color, 1), nth($header-color, 2));
 }
-
-[role="contentinfo"] {
-    @include footer;
-}
-
 [role="navigation"] {
     @include navigation;
     > ul {
         @include navigation__list;
     }
 }
-
 [role="main"],
 [role="navigation"],
 [role="complementary"] {
@@ -36,15 +18,35 @@ img {
         @extend %thef-reset, %thef-space;
     }
 }
-
 [role="complementary"] {
     h1 {
-        font-size: 1.8em;
+        font-size: 1.5em; // matches h2 font-size
+        line-height: inherit;
     }
     article h1 {
-        font-size: 1.4em;
+        font-size: 1.17em; // matches h3 font-size
     }
 }
+
+
+
+.header {
+    @include header;
+}
+.header__menu {
+    @include header__menu;
+}
+.header__title {
+    @include header__title;
+}
+
+
+
+.footer {
+    @include footer;
+}
+
+
 
 .gallery {
     figure,
@@ -64,6 +66,9 @@ img {
 .gallery__image--small {
     @include gallery__image--small;
 }
+.gallery__image--media {
+    @include gallery__image--media;
+}
 .gallery__image--large {
     @include gallery__image--large;
 }
@@ -76,27 +81,27 @@ img {
 
 
 
-body {
+.page {
     @include page;
 }
 .page__body {
     @include page__body;
 }
+.page__content {
+    @include page__content;
+}
 .page__content--row {
     @include page__content--row;
 }
-.page__content,
-.page__content--row,
-[role="banner"] > *,
-[role="contentinfo"] > * {
-    @include page__content;
+.page__content--wide {
+    @include page__content--wide;
 }
-[role="main"] {
+.page__content--wider {
+    @include page__content--wider;
+}
+.page__content--column--main {
     @include page__content--column(main);
-    &.curriculum {
-        @include page__content--column(extended);
-    }
 }
-[role="complementary"] {
+.page__content--column--aside {
     @include page__content--column(aside);
 }

@@ -14,7 +14,7 @@ $base-color--fg: #343434;
 $base-color--bg: #f3f3f3;
 
 $altern-color: #f4bf75;
-$header-color: ($base-color--fg darken($base-color--bg, 5%));
-$footer-color: (darken($base-color--bg, 5%) $base-color--fg);
+$header-color: ($base-color--fg darken($base-color--bg, 10%));
+$footer-color: (darken($base-color--bg, 10%) $base-color--fg);
 
 $page-maxwidth: 1200px;

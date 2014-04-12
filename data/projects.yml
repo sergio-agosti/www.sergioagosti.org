@@ -1,5 +1,26 @@
-- name: Together Commerce 2014
-  slug: together-commerce-2014
+- name: "Luca Bartolini Photography"
+  slug: "luca-bartolini-photography"
+  published: 2014-02-25
+  images:
+    thumb:
+      src: LucaBartoliniPhotography.jpg
+      alt: 
+    small:
+      src: LucaBartoliniPhotography(small).jpg
+      alt: 
+    medium:
+      src: LucaBartoliniPhotography(media).jpg
+      alt: 
+    large:
+      src: LucaBartoliniPhotography(large).jpg
+      alt: 
+    extra:
+      src: LucaBartoliniPhotography(extra).jpg
+      alt: 
+  url: "http://lucabartoliniphotography.com"
+        
+- name: "Together Commerce 2014"
+  slug: "together-commerce-2014"
   published: 2014-01-01
   images:
     thumb:
@@ -9,7 +30,7 @@
         src: CategoryEdge-TogetherCommerce-ToshibaGlobalCommerceSolutions(small).jpg
         alt: 
     medium:
-        src: CategoryEdge-TogetherCommerce-ToshibaGlobalCommerceSolutions(medium).jpg
+        src: CategoryEdge-TogetherCommerce-ToshibaGlobalCommerceSolutions(media).jpg
         alt: 
     large:
         src: CategoryEdge-TogetherCommerce-ToshibaGlobalCommerceSolutions(large).jpg
@@ -18,22 +39,23 @@
         src: CategoryEdge-TogetherCommerce-ToshibaGlobalCommerceSolutions(extra).jpg
         alt: 
         
-- name: Another awesome project
-  slug: another-awesome-project
-  published: 2013-12-06
+- name: "The Frameworks 2014"
+  slug: "the-frameworks-2014"
+  published: 2014-01-01
   images:
     thumb:
-        src: CategoryEdge-TogetherCommerce-ToshibaGlobalCommerceSolutions.jpg
+        src: TheFrameworks2014.jpg
         alt: 
     small:
-        src: CategoryEdge-TogetherCommerce-ToshibaGlobalCommerceSolutions(small).jpg
+        src: TheFrameworks2014(small).jpg
         alt: 
     medium:
-        src: CategoryEdge-TogetherCommerce-ToshibaGlobalCommerceSolutions(medium).jpg
+        src: TheFrameworks2014(media).jpg
         alt: 
     large:
-        src: CategoryEdge-TogetherCommerce-ToshibaGlobalCommerceSolutions(large).jpg
+        src: TheFrameworks2014(large).jpg
         alt: 
     extra:
-        src: CategoryEdge-TogetherCommerce-ToshibaGlobalCommerceSolutions(extra).jpg
+        src: TheFrameworks2014(extra).jpg
         alt: 
+  url: "http://theframeworks.com"
