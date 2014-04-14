@@ -9,15 +9,17 @@
         <main role="main">
             <ol>
         	<% data.projects.each do |project| %>
-        		<li>
+        		<li class="space--2x">
             		<article>
                         <time datetime="<%= project.published %>"><%= project.published.strftime("%d/%m/%Y") %></time>
                         <h1><%= link_to project.name, "/projects/#{project.slug}.html" %></h1>
+                    <% if project.images and project.images.thumb %>
                         <p>
                             <% link_to "/projects/#{project.slug}.html" do %>
                                 <%= image_tag "projects/#{project.slug}/#{project.images.thumb.src}", :alt => project.images.thumb.alt %>
                             <% end %>
                         </p>
+                    <% end %>
                     </article>
         		</li>
             <% end %>
@@ -32,7 +34,7 @@
     :locals => {
         :navigation => { :active => '/projects.html' },
         :breadcrumb => [
-            { :text => "Sergio", :path => '/index.html' },
+            { :text => "About", :path => '/index.html' },
             { :text => "Projects" }
         ]
     }

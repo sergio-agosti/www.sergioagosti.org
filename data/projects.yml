@@ -17,11 +17,10 @@
     extra:
       src: LucaBartoliniPhotography(extra).jpg
       alt: 
-  url: "http://lucabartoliniphotography.com"
         
 - name: "Together Commerce 2014"
   slug: "together-commerce-2014"
-  published: 2014-01-01
+  published: 2014-01-31
   images:
     thumb:
         src: CategoryEdge-TogetherCommerce-ToshibaGlobalCommerceSolutions.jpg
@@ -39,9 +38,13 @@
         src: CategoryEdge-TogetherCommerce-ToshibaGlobalCommerceSolutions(extra).jpg
         alt: 
         
-- name: "The Frameworks 2014"
-  slug: "the-frameworks-2014"
-  published: 2014-01-01
+- name: "Antipasti - a web front-end boilerplate"
+  slug: "antipasti-web-front-end-boilerplate"
+  published: 2014-02-21
+        
+- name: "The Frameworks 2013"
+  slug: "the-frameworks-2013"
+  published: 2013-11-04
   images:
     thumb:
         src: TheFrameworks2014.jpg

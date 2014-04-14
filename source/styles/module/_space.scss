@@ -1,0 +1,6 @@
+.space {
+    @include thef-space(margin-bottom);
+}
+.space--2x {
+    @include thef-space(margin-bottom, 2);
+}

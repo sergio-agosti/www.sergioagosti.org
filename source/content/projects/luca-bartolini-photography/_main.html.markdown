@@ -1,2 +1,2 @@
-A friend of mine, who is a very talented amateur photographer, asked me to help him publishing a website about his pictures.
-He gave me a **visual idea** on how he wanted the website to look like, and I translated it into an elegant **responsive website**.
+A friend of mine, who is a very talented amateur photographer, asked me to help him publishing a [website about his pictures](http://lucabartoliniphotography.com "Luca Bartolini Photography").
+He gave me a **visual idea** on how he wanted the website to look like, and I turned it into an elegant **responsive website**.

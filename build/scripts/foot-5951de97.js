@@ -1,0 +1,1 @@
+!function(e){e.fn.screenshot=function(n){e.extend({},n);return this.each(function(){{var n=e(this);n.find("> img")}n.on("click.screenshot",function(e){e.preventDefault(),n.toggleClass("is-target")})})},e(".gallery__image").screenshot()}(jQuery);

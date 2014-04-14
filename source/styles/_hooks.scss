@@ -18,14 +18,15 @@ a[href="#navigation"] {
         @extend %thef-reset, %thef-space;
     }
 }
+li > article,
 [role="complementary"] {
     h1 {
         font-size: 1.5em; // matches h2 font-size
-        line-height: inherit;
     }
-    article h1 {
-        font-size: 1.17em; // matches h3 font-size
-    }
+}
+[role="complementary"] article h1 {
+    font-size: 1.17em; // matches h3 font-size
+    line-height: inherit; // matches default line-height
 }
 
 

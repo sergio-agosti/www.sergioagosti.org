@@ -1,3 +1,5 @@
+require "builder"
+
 Sass::Script::Number.precision = 14
 
 ###
@@ -17,6 +19,7 @@ Sass::Script::Number.precision = 14
 #
 # With no layout
 # page "/path/to/file.html", :layout => false
+page "/sitemap.xml", layout: false
 #
 # With alternative layout
 # page "/path/to/file.html", :layout => :otherlayout
@@ -50,16 +53,29 @@ activate :bourbon
 # https://github.com/middleman/middleman-syntax
 activate :syntax
 
+# https://github.com/tvaughan/middleman-deploy
+activate :deploy do |deploy|
+  deploy.method   = :ftp
+  deploy.host     = "ftp.sergioagosti.org"
+  deploy.path     = "/2014/"
+  deploy.user     = ""
+  deploy.password = ""
+end
+
 # Methods defined in the helpers block are available in templates
-# helpers do
-#   def some_helper
-#     "Helping"
-#   end
-# end
+helpers do
+  def markdown(text)
+     Redcarpet::Markdown.new(Redcarpet::Render::HTML).render(text)
+  end
+end
+
+# this is the production base url
+set :base_url, 'http://www.sergioagosti.org'
 
 set :css_dir, 'styles'
 set :js_dir, 'scripts'
 set :images_dir, 'images'
+set :markdown_engine, :redcarpet
 
 # Build-specific configuration
 configure :build do
@@ -70,7 +86,7 @@ configure :build do
   activate :minify_javascript
 
   # Enable cache buster
-  activate :asset_hash
+  #activate :asset_hash
 
   # Use relative URLs
   activate :relative_assets

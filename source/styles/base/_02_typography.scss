@@ -48,10 +48,11 @@ a {
     }
 }
 /**
- * Set the line-height for the h1.
+ * Set the line-height for the h1 and h2 tags.
  */
-h1 {
-    line-height: 1.125em;
+h1,
+h2 {
+    line-height: 1.125;
 }
 /**
  * Remove margin-top and add a fixed margin-bottom on elements

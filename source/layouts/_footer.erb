@@ -7,7 +7,7 @@
     <footer role="contentinfo" class="footer">
         <nav role="navigation" class="page__content page__content--wide">
             <ul>
-            <% { '/index.html' => 'Sergio', '/projects.html' => 'Projects', '/resume.html' => 'Résumé'}.each do |path, text| %>
+            <% { '/index.html' => 'About', '/projects.html' => 'Projects', '/resume.html' => 'Résumé'}.each do |path, text| %>
                 <li>
                     <%= (navigation[:active] == path) ? '<b>' + link_to(text, path) + '</b>' : link_to(text, path) %>
                 </li>

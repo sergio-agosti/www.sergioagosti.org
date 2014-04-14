@@ -1,0 +1,1 @@
+For this project I've used pure **HTML** and **SASS**/**CSS**, **JavaScript** (with the help of [jQuery](http://jquery.com)) and **PHP** (built on top of the [Yii framework](http://www.yiiframework.com/)).
