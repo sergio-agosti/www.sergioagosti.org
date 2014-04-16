@@ -30,10 +30,10 @@
 }
 @mixin page__content {
 
+    @include thef-center;
     @include thef-space(padding-left padding-right);
     @include box-sizing(border-box);
     
-    margin: { left: auto; right: auto; }
     max-width: $page-maxwidth / 100 * 60;
     
     @include _page--has-no-flexbox {
@@ -60,13 +60,13 @@
 @mixin page__content--column($content: null) {
     @include _is-page-wide {
     
-        @include thef-grid__column(1 1);
+        @include thef-grid__item(1 1);
         
         @if $content == "main" {
-            @include thef-grid__column(3 5);
+            @include thef-grid__item(3 5);
         }
         @if $content == "aside" {
-            @include thef-grid__column(2 5);
+            @include thef-grid__item(2 5);
             @include box-sizing(border-box);
             @include thef-space(padding-left, 2);
         }

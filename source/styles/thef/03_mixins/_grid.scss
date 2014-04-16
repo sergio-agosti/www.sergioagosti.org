@@ -10,7 +10,12 @@
 //* - optional vertical gutter
 //*/
 
-/* GLOBAL OPTIONS */
+
+
+//* ========================================================================== */
+//* GLOBAL OPTIONS =========================================================== */
+//* ========================================================================== */
+
 $grid-breakpoints: (
     's'    '(max-width: 500px)',                        /* small devices only       */
     'm'    '(min-width: 501px) and (max-width: 850px)', /* medium devices only      */
@@ -21,7 +26,7 @@ $grid-breakpoints: (
     'l-to' '(max-width: 1300px)',                       /* large devices and below  */
     'x'    '(min-width: 1301px)'                        /* extra-large devices only */
 ) !default;
-$grid-columns: 1 2 3 4 5 6 7 8 9 10 11 12 !default;
+$grid-items: 1 2 3 4 5 6 7 8 9 10 11 12 !default;
 $grid-space: $base-space !default;
 $grid-is-semantic: true !default;
 $grid-notify-js: false !default;
@@ -29,125 +34,62 @@ $grid-define-the-all-media: true !default;
 
 
 
-@import "box", "center";
-
-// support browsers which don't (fully) support flexbox
-@mixin _grid-noflex {
-    html.has-no-flexbox & {
-        @content;
-    }
-    @supports ( not ((-moz-flex-wrap: wrap) or (flex-wrap: wrap)) ) {
-        @content;
-    }
-}
-// generates the grid columns
-@mixin _grid-generate($grid-breakpoint-size) {
-    // generates the elements for each grid size
-    @each $i in $grid-columns {
-        // generates the elements for this grid size
-        $j: 1;
-        @while $j <= $i {
-        
-            $ratio: percentage($j/$i);
-            
-            #{$_grid-ct}grid__#{$grid-breakpoint-size}--#{$j}-#{$i} {
-                width: $ratio;
-            }
-            #{$_grid-ct}grid__#{$grid-breakpoint-size}--skip--#{$j}-#{$i} {
-                margin-left: $ratio;
-            }
-            #{$_grid-ct}grid__#{$grid-breakpoint-size}--pull--#{$j}-#{$i},
-            #{$_grid-ct}grid__#{$grid-breakpoint-size}--push--#{$j}-#{$i} {
-                position: relative;
-            }
-            #{$_grid-ct}grid__#{$grid-breakpoint-size}--pull--#{$j}-#{$i} {
-                right: $ratio;
-            }
-            #{$_grid-ct}grid__#{$grid-breakpoint-size}--push--#{$j}-#{$i} {
-                left: $ratio;
-            }
-            
-            $j: $j + 1;
-        }
-    }
-    // this column is centered
-    #{$_grid-ct}grid__#{$grid-breakpoint-size}--center {
-        @include thef-center;
-    }
-    // this column is centered when in a guttered grid
-    #{$_grid-ct}grid__#{$grid-breakpoint-size}--center--gutter {
-        @include thef-center;
-        @include transform(translateX(-.5 * $grid-space));
-    }
-    // this column is removed
-    #{$_grid-ct}grid__#{$grid-breakpoint-size}--hidden {
-        display: none;
-    }
-    // this column is aligning to the right
-    #{$_grid-ct}grid__#{$grid-breakpoint-size}--revdir {
-        margin-left: auto;
-        @include _grid-noflex {
-            float: right;
-        }
-    }
-    // this is the first column of a row
-    #{$_grid-ct}grid__#{$grid-breakpoint-size}--newrow {
-        clear: both;
-    }
-}
-
 //* ========================================================================== */
-//* ========================================================================== */
+//* PUBLIC METHODS =========================================================== */
 //* ========================================================================== */
 
 //**
 //* Defines a grid container.
 //*
-//* @param $grid-options some options for the grid (for example, gutter)
+//* @param $options (optional) some options for the grid (for example, gutter)
 //*/
 @mixin thef-grid($options...) {
     @include display(flex);
     @include flex-wrap(wrap);
     @include align-content(flex-start);
     
-    @if length($options) > 0 {
-        @each $option in $options {
-        
-            @if $option == gutter {
-                margin-left: -1 * $grid-space;
-                > * {
-                    padding-left: $grid-space;
-                    @include box-sizing(border-box);
-                }
-            }
-            @if $option == center {
-                @include justify-content(center);
-            }
-        
-        }
-    }
+    @include thef-grid--options($options);
     
-    /* keep this block here at the end otherwise IE8 won't be happy :| */
+    //* keep this block here at the end, otherwise IE8 won't be happy :| */
     @include _grid-noflex {
         display: block;
-        @include thef-box(both);
+        letter-spacing: -0.31em;
         > * {
-            float: left;
+            vertical-align: top;
+            display: inline-block;
+            letter-spacing: normal;
+        }
+    }
+    //* no more code after here please, otherwise IE8 won't be happy :| */
+}
+//**
+//* Defines a grid container's options.
+//*
+//* @param $options some options for the grid (for example, gutter)
+//*/
+@mixin thef-grid--options($options) {
+    @each $option in $options {
+        @if $option == gutter {
+            margin-left: -1 * $grid-space;
+            > * {
+                padding-left: $grid-space;
+                @include box-sizing(border-box);
+            }
         }
     }
 }
 //**
 //* Defines a grid column.
 //*
-//* @param $grid-column the column definition in the form A B,
+//* @param $column the column definition in the form A B,
 //*                     where A is the width of the column and B is the number of columns;
 //*                     if in a different form, it is assumed the passed value are $grid-options
 //*      e.g. 1 3 for a 1/3 (one third) column
-//* @param $grid-options optional options for the column
-//*      e.g. newrow, skip 1 5, pull 2 3, center, hidden
+//* @param $options optional options for the column
+//*      e.g. skip 1 5, pull 2 3, hidden
 //*/
-@mixin thef-grid__column($column, $options...) {
-    /* if the first parameter is in the form <number> <number> e.g. 1 3 ... */
+@mixin thef-grid__item($column, $options...) {
+    //* if the first parameter is in the form <number> <number> e.g. 1 3 ... */
     @if length($column) == 2
         and
         type_of(nth($column, 1)) == number
@@ -160,52 +102,92 @@ $grid-define-the-all-media: true !default;
     {
         width: percentage(nth($column, 1) / nth($column, 2));
     }
-    /* else it is assumed the first parameter is actually a lost of options */
+    //* else it is assumed the first parameter is actually a list of options */
     @else {
         $options: $column;
     }
     
+    @include thef-grid__item--options($options);
+}
+//**
+//* Defines a grid column's options.
+//*
+//* @param $options optional options for the column
+//*      e.g. skip 1 5, pull 2 3, hidden
+//*/
+@mixin thef-grid__item--options($options) {
     @each $option in $options {
         @if length($option) == 3 {
-        
+            
+            $span: percentage(nth($option, 2) / nth($option, 3));
+            
             @if nth($option, 1) == skip {
-                margin-left: percentage(nth($option, 2) / nth($option, 3));
+                margin-left: $span;
             }
             @if nth($option, 1) == pull or nth($option, 1) == push {
                 position: relative;
             }
             @if nth($option, 1) == pull {
-                right: percentage(nth($option, 2) / nth($option, 3));
+                right: $span;
             }
             @if nth($option, 1) == push {
-                left: percentage(nth($option, 2) / nth($option, 3));
+                left: $span;
             }    
         }
         @else {
             
-            @if $option == center {
-                @include thef-center;
-            }
-            @if $option == center--gutter {
-                @include thef-center;
-                @include transform(translateX(-.5 * $grid-space));
-            }
             @if $option == hidden {
                 display: none !important;
             }
-            @if $option == revdir {
-                margin-left: auto;
-                @include _grid-noflex {
-                    float: right;
-                }
+        }
+    }
+}
+
+
+
+//* ========================================================================== */
+//* PRIVATE METHODS ========================================================== */
+//* ========================================================================== */
+
+// wraps style for browsers which don't (fully) support flexbox
+@mixin _grid-noflex {
+    html.has-no-flexbox & {
+        @content;
+    }
+    @supports ( not ((-moz-flex-wrap: wrap) or (flex-wrap: wrap)) ) {
+        @content;
+    }
+}
+
+// generates the grid items
+@mixin _grid-generate($grid-breakpoint-size) {
+    // generates the elements for each grid size
+    @each $i in $grid-items {
+        // generates the elements for this grid size
+        $j: 1;
+        @while $j <= $i {
+        
+            $span: percentage($j/$i);
+            
+            #{$_grid-ct}grid__#{$grid-breakpoint-size}--#{$j}-#{$i} {
+                @include thef-grid__item($j $i);
             }
-            @if $option == newrow {
-                @include _grid-noflex {
-                    clear: both;
-                }
+            #{$_grid-ct}grid__#{$grid-breakpoint-size}--skip--#{$j}-#{$i} {
+                @include thef-grid__item(skip $j $i);
+            }
+            #{$_grid-ct}grid__#{$grid-breakpoint-size}--pull--#{$j}-#{$i} {
+                @include thef-grid__item(pull $j $i);
+            }
+            #{$_grid-ct}grid__#{$grid-breakpoint-size}--push--#{$j}-#{$i} {
+                @include thef-grid__item(push $j $i);
             }
             
+            $j: $j + 1;
         }
+    }
+    // this column is removed
+    #{$_grid-ct}grid__#{$grid-breakpoint-size}--hidden {
+        @include thef-grid__item(hidden);
     }
 }
 
@@ -213,6 +195,8 @@ $grid-define-the-all-media: true !default;
 //* ========================================================================== */
 //* ========================================================================== */
 //* ========================================================================== */
+
+
 
 //**
 //* general usage
@@ -223,10 +207,6 @@ $grid-define-the-all-media: true !default;
 //* .grid__A--skip--B-C is a column with B on C empty space before for the A size grid
 //* .grid__A--pull--B-C is a column shifted of B on C on the left for the A size grid
 //* .grid__A--push--B-C is a column shifted of B on C on the right for the A size grid
-//* .grid__A--newrow is a first line column for the A size grid
-//*      this ensures the column starts on a new line
-//* .grid__A--center is a centered column
-//*      this column will be the only one of its row
 //*
 //* Markup example:
 //*
@@ -234,8 +214,8 @@ $grid-define-the-all-media: true !default;
 // <grid-container class="grid">
 //     <grid-column class="grid__l--1-3 grid__x--1-5"></grid-column>
 //     <grid-column class="grid__l--2-3 grid__x--2-5"></grid-column>
-//     <grid-column class="grid__l--1-2 grid__l--newrow grid__x--2-5"></grid-column>
-//     <grid-column class="grid__l--1-2 grid__x--newrow"></grid-column>
+//     <grid-column class="grid__l--1-2 grid__x--2-5"></grid-column>
+//     <grid-column class="grid__l--1-2"></grid-column>
 //     ...
 // </grid-container>
 //
@@ -288,7 +268,7 @@ $_grid-ct: if($grid-is-semantic, unquote("%"), unquote("."));
     @include thef-grid;
 }
 #{$_grid-ct}grid--gutter {
-    @include thef-grid(gutter);
+    @include thef-grid--options(gutter);
 }
 
 //**

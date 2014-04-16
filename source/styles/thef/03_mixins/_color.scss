@@ -5,14 +5,22 @@
     & {
         color: $foreground;
     }
-    @if $background != null {
+    @if type-of($background) == color {
         & {
             background-color: $background;
         }
     }
-    @if $links {
+    @if type-of($links) == color or (length($links) == 2 and type-of(nth($links, 1)) == color and type-of(nth($links, 2)) == color) {
         &:link, &:visited, :link, :visited {
-            color: $links;
+            @if length($links) == 2 {
+                color: nth($links, 1);
+                &:hover, &:focus {
+                    color: nth($links, 2);
+                }
+            }
+            @else {
+                color: $links;
+            }
         }
     }
 }
